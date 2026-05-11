@@ -1,8 +1,6 @@
----
-applyTo: "*"
----
-
 # Security Standards
+
+> **For the Antigravity Agent:** Apply these rules to ALL code changes. Security violations are blocking — do not proceed with a merge if any are found.
 
 This document outlines the standard security practices across all I4G platform projects, ensuring data protection, secure authentication, and least-privilege access.
 

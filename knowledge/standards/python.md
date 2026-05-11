@@ -1,8 +1,6 @@
----
-applyTo: "**/*.py"
----
-
 # Python Standards
+
+> **For the Antigravity Agent:** Apply these rules when writing or reviewing Python files in any I4G repository (`core/`, `ssi/`, `ml/`).
 
 - **Type hints:** Required on all functions — parameters + return type.
 - **Docstrings:** Google-style. Required on public functions, classes, modules. Private helpers (`_name`) get at least a one-liner.
@@ -17,13 +15,13 @@ applyTo: "**/*.py"
 - **Stores:** Use factories (e.g., `factories.py`) — do not instantiate stores directly. (See `architecture.md` for routing).
 - **TYPE_CHECKING guard:** For expensive runtime-only imports used solely as types (e.g., Playwright `Page`), guard with `if TYPE_CHECKING:`.
 
-# Dependency and Environment Management
+## Dependency and Environment Management
 
 - **Environment:** Use **Conda** for virtual environments. The standard workspace environment is named `i4g` (e.g., `conda run -n i4g <command>`).
 - **Dependencies:** Core metadata and optional dependencies (e.g., `test`) are defined in `pyproject.toml` using `hatchling`.
 - **Locking:** Strict dependency pinning is maintained in `requirements.txt` for deterministic builds. When adding a dependency, update `pyproject.toml` first, then recompile `requirements.txt`.
 
-# Ruff Pitfalls
+## Ruff Pitfalls
 
 - **B008 — Typer `Option()`/`Argument()` in defaults.** Typer's documented pattern `def cmd(name: str = typer.Option(...))` triggers B008. Don't refactor — add `"src/*/cli/*.py" = ["B008"]` to `[tool.ruff.lint.per-file-ignores]` in pyproject.toml.
 - **UP038 — `isinstance` with tuple of types.** `isinstance(x, (int, float))` → `isinstance(x, int | float)`. Use union syntax on Python 3.10+.

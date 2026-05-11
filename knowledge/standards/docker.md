@@ -1,5 +1,7 @@
 # Docker Standards
 
+> **For the Antigravity Agent:** Apply these rules when writing or reviewing Dockerfiles and container configurations.
+
 This document outlines the standard Dockerfile patterns for the I4G workspace, particularly for Cloud Run and Vertex AI components.
 
 ## Base Images

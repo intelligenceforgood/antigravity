@@ -1,8 +1,6 @@
----
-applyTo: "**/*.sql,**/etl*.py,**/bigquery/**,ml/containers/train-*/**,ml/scripts/submit_*.py,ml/src/ml/training/**"
----
-
 # BigQuery & ETL Standards
+
+> **For the Antigravity Agent:** Apply these rules when working with SQL files, ETL pipelines, BigQuery schemas, or ML training workflows.
 
 ## SQL Files
 - **Never break backtick-quoted identifiers across lines.** Formatters can split `` `project.dataset.table` `` onto multiple lines, causing `Unclosed identifier literal` errors. Keep all backtick identifiers on a single line.
@@ -19,22 +17,22 @@ applyTo: "**/*.sql,**/etl*.py,**/bigquery/**,ml/containers/train-*/**,ml/scripts
 - **BQ tables need delete + recreate after significant schema changes.** Terraform can't remove or rename columns in-place. `bq rm -f` the tables, then `terraform apply` to recreate.
 - **BigQuery dataset `access` blocks replace all defaults.** Always include the three default `special_group` entries (`projectOwners`, `projectWriters`, `projectReaders`) alongside custom grants.
 
-# ML Training Workflow Standards
+## ML Training Workflow Standards
 
-## Training Container Authoring
+### Training Container Authoring
 - **Coerce feature dtypes before XGBoost.** JSONL features can arrive as strings even when they look numeric. After building a feature DataFrame, always coerce: `df.apply(pd.to_numeric, errors="coerce").fillna(0)`. XGBoost's `DMatrix` rejects `object` dtype columns with a cryptic `KeyError: 'object'`.
 - **Pin `classification_report` to all encoder classes.** When some classes have zero eval samples, `classification_report(y_true, y_pred, target_names=le.classes_)` raises `ValueError: Number of classes N does not match size of target_names M`. Always pass both extra params.
 
-## Pipeline Submission
+### Pipeline Submission
 - **Upload the config to GCS before submitting.** If `submit_pipeline.py` constructs a `gs://` path for a config parameter, the training container will 404 unless the local file is actually uploaded first.
 
-## Debugging Loop — Test Locally First
+### Debugging Loop — Test Locally First
 **Never iterate via cloud submissions.** Each build→push→submit→wait cycle takes ~10 minutes. Instead:
 1. Download a small sample once.
 2. Run the script directly locally.
 3. Only build+push+submit once the local run exits cleanly.
 
-## Monitoring Submitted Jobs
+### Monitoring Submitted Jobs
 Poll pipeline state via the Python SDK. To get the inner CustomJob ID from a failed pipeline, check the outer job logs for the `resource.labels.job_id` in the error URL, then pull errors with:
 ```bash
 gcloud logging read 'resource.type="ml_job" resource.labels.job_id="<id>" severity>=DEFAULT' \

@@ -1,5 +1,7 @@
 # CI/CD Pipeline Standards
 
+> **For the Antigravity Agent:** Consult this when reviewing CI/CD configurations, deployment workflows, or GitHub Actions files.
+
 This document outlines the standard CI/CD practices across all I4G platform projects, leveraging GitHub Actions and Google Cloud.
 
 ## Pipeline Structure

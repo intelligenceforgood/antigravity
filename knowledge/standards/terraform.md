@@ -1,8 +1,6 @@
----
-applyTo: "**/*.tf,**/*.tfvars"
----
-
 # Terraform / HCL Standards
+
+> **For the Antigravity Agent:** Apply these rules when working with Terraform files in the `infra/` repository.
 
 - **Formatter:** `terraform fmt` before committing.
 - **Naming:** `snake_case` for all resource names, variables, outputs, locals. Module directories: `snake_case` or `kebab-case` (match existing convention).

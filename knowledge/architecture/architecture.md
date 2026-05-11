@@ -1,8 +1,6 @@
----
-applyTo: "*"
----
-
 # Architecture Cheat Sheet
+
+> **For the Antigravity Agent:** This is the authoritative reference for the I4G platform architecture. Proactively read this document before planning features, reviewing code, or making architectural decisions. Do NOT rely on assumptions — verify against this reference.
 
 Dense reference for the i4g multi-root workspace. Absorb before every coding session to avoid wrong assumptions about routing, auth, data flow, and storage.
 
@@ -300,6 +298,6 @@ site_scans ──1:N──▶ harvested_wallets
 
 7. **Evidence storage abstraction** — `EvidenceStorage` abstracts local FS vs GCS. In local mode it uses `data/evidence/`. In cloud it uses GCS buckets with signed URLs. Never hardcode file paths — use the `EvidenceStorage` interface.
 
-8. **Case ≠ Review (and “cases” in the UI)** — `case_id` and `review_id` are different. `review_queue` now has a FK to `cases.case_id`. `cases` is the authoritative entity holding classification, description, metadata, and tags. `scam_records` is a write-through search cache only. `get_extended_case()` joins `review_queue` → `cases` (not `scam_records`). Timeline events (`review_actions`) are keyed by `review_id`, not `case_id`. The UI calls them **cases**; the API routes use `/reviews/` — this is an intentional alias. Don't rename one without the other.
+8. **Case ≠ Review (and "cases" in the UI)** — `case_id` and `review_id` are different. `review_queue` now has a FK to `cases.case_id`. `cases` is the authoritative entity holding classification, description, metadata, and tags. `scam_records` is a write-through search cache only. `get_extended_case()` joins `review_queue` → `cases` (not `scam_records`). Timeline events (`review_actions`) are keyed by `review_id`, not `case_id`. The UI calls them **cases**; the API routes use `/reviews/` — this is an intentional alias. Don't rename one without the other.
 
 9. **TIFAP is NOT a separate service** — The Threat Intelligence & Fraud Analytics Platform reads from core's database via SQLAlchemy directly — no HTTP hop, no separate service, no dedicated Cloud Run service. There is no `/tifap/` API prefix. Campaign intelligence, entity stats, and analytics are served by existing core routers: `/intelligence/`, `/impact/`, `/campaigns/`, and `/exports/`. Do NOT create a TIFAP service or add a proxy route for it — the data access is intentionally in-process for performance.

@@ -1,8 +1,6 @@
----
-applyTo: "**/settings*.toml,**/settings*.py,**/.env*,**/pyproject.toml,**/*.yaml,**/*.yml"
----
-
 # Settings & Configuration Standards
+
+> **For the Antigravity Agent:** Apply these rules when working with configuration files, settings, or environment variables.
 
 - **Settings access:** Always via `get_settings()` in code. Never hard-code paths, URLs, or credentials.
 - **Environment overrides:** Use env vars with project prefix (e.g., `I4G_*`). Double underscores for nesting (`I4G_LLM__PROVIDER`).
