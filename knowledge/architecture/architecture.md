@@ -1,6 +1,8 @@
 # Architecture Cheat Sheet
 
 > **For the Antigravity Agent:** This is the authoritative reference for the I4G platform architecture. Proactively read this document before planning features, reviewing code, or making architectural decisions. Do NOT rely on assumptions — verify against this reference.
+>
+> **Cross-Repo Awareness:** You are operating in a multi-root workspace. When a change in one repo requires corresponding changes in another (e.g., a Core API change requires a UI proxy update), proactively identify and make both changes. Do not leave the system in an inconsistent state.
 
 Dense reference for the i4g multi-root workspace. Absorb before every coding session to avoid wrong assumptions about routing, auth, data flow, and storage.
 

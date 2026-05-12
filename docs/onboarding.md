@@ -1,28 +1,25 @@
 # Antigravity Developer Onboarding
 
-Welcome to the **Antigravity Workflow Framework** for the I4G team. This guide walks you through setup, core concepts, and your first workflow.
+Welcome to the **Antigravity Skill Framework** for the I4G team. This guide walks you through setup, core concepts, and your first skill.
 
 ## Prerequisites
 
 - **Antigravity** installed and authenticated.
 - Access to the I4G Git repositories (`core`, `ui`, `ssi`, `infra`, `ml`, `planning`, `docs`, `mobile`).
-- The `antigravity` repository cloned alongside the other I4G repos under the same parent directory.
+- The `antigravity` repository cloned locally and accessible on your machine.
 
 ## Step 1: Workspace Configuration
 
-Antigravity operates on absolute file paths and natively supports multi-root workspaces. Unlike the previous GCA setup, **you do not need**:
-- A single unified workspace root
-- Symlinks to `.gemini/` directories
-- Any special VSCode workspace configuration
+Antigravity operates on absolute file paths and natively supports multi-root workspaces. 
 
-Simply ensure all your I4G repos (including `antigravity`) are under the same parent directory (e.g., `/path/to/i4g/`), and Antigravity will automatically detect and navigate all of them.
+To configure your environment, simply add all relevant I4G repos (including the `antigravity` repo) to your current IDE workspace. Antigravity will automatically detect and navigate across all of them, regardless of where they are physically stored on your machine.
 
 ## Step 2: Configure Your User Rules
 
 For consistent agent behavior across all sessions, add the recommended rules to your Antigravity settings. See [docs/user-rules-template.md](user-rules-template.md) for the full template.
 
 Key rules to add:
-- **Workflow awareness** — the agent will check for relevant workflows before starting work
+- **Skill awareness** — the agent will check for relevant skills before starting work
 - **Knowledge loading** — the agent will proactively read architectural standards before coding
 - **Output discipline** — the agent won't dump large code blocks in chat
 - **Planning discipline** — the agent will track task progress in plan files
@@ -33,51 +30,52 @@ These rules persist across ALL conversations — you only set them once.
 
 ### Knowledge (Automatic Context)
 
-The `antigravity/knowledge/` directory contains architectural standards, coding conventions, and operational lessons. When Antigravity executes a workflow, it proactively reads the relevant knowledge files. **You never need to manually load these.**
+The `antigravity/knowledge/` directory contains architectural standards, coding conventions, and operational lessons. When Antigravity executes a skill, it proactively reads the relevant knowledge files. **You never need to manually load these.**
 
 ```
 knowledge/
 ├── architecture/    # Platform architecture, routing, auth, database schema
 ├── standards/       # Python, TypeScript, testing, security, CI/CD, Docker, etc.
-└── operational/     # Lessons learned, merge discipline, workflow rules
+└── operational/     # Lessons learned, merge discipline, skill execution rules
 ```
 
-### Workflows (Executable Procedures)
+### Skills (Executable Procedures)
 
-The `antigravity/workflows/` directory contains standardized procedures for every stage of development. Browse the [Workflow Index](../workflows/INDEX.md) to see all available workflows.
-
-```
-workflows/
-├── planning/        # PRD → Architecture → Implementation Plan
-├── execution/       # Work on Task, TDD, Fix Bug, Clarify
-├── review/          # Code Review, Check Logs, Manual Verification
-└── lifecycle/       # Sprint Wrapup, Merge, Deploy, Record Lessons
-```
-
-## Step 4: Invoke Your First Workflow
-
-There are two ways to invoke a workflow:
-
-### Method 1: `@[file]` Mention (Recommended)
-
-Mention the workflow file in your prompt:
+The `.agents/skills/` directory contains standardized procedures for every stage of development. Browse the [Skill Catalog](skill-catalog.md) to see all available skills.
 
 ```
-@[antigravity/workflows/planning/plan-work.md] Plan the new user search feature
+.agents/skills/
+├── plan-work/       # Implementation planning
+├── prd/             # Generate PRDs
+├── work-on-task/    # Task implementation
+├── fix-bug/         # Bug fixing
+└── ... (and more)
+```
+
+## Step 4: Invoke Your First Skill
+
+There are two ways to invoke a skill:
+
+### Method 1: Slash Command (Recommended)
+
+Use the slash command in your prompt:
+
+```
+/plan-work Plan the new user search feature
 described in planning/prd_user_search.md
 ```
 
-Antigravity reads the workflow and follows its procedure autonomously.
+Antigravity reads the skill and follows its procedure autonomously.
 
 ### Method 2: Natural Language Shorthand
 
-For common workflows, just describe what you want:
+For common skills, just describe what you want:
 
 ```
 Plan work for the new search filtering feature
 ```
 
-The agent recognizes the intent and follows the appropriate workflow. See the [Workflow Index](../workflows/INDEX.md) for all available shorthands.
+The agent recognizes the intent and follows the appropriate skill. See the [Skill Catalog](skill-catalog.md) for all available shorthands.
 
 ## Step 5: Understanding Agent Autonomy
 
@@ -99,28 +97,28 @@ Antigravity is an **autonomous agent** — it reads files, writes code, and runs
 - Check `planning/tasks/` for updated plan checklists
 - Check `planning/change_log.md` for documented changes
 
-## Step 6: Your First Workflow (Try It)
+## Step 6: Your First Skill (Try It)
 
 1. **Plan a feature:**
    ```
-   @[antigravity/workflows/planning/plan-work.md] Plan a small improvement:
+   /plan-work Plan a small improvement:
    add a "last updated" timestamp to the case detail page in the UI
    ```
 
 2. **Execute step 1:**
    ```
-   @[antigravity/workflows/execution/work-on-task.md] Work on task Step 1 from
+   /work-on-task Work on task Step 1 from
    planning/tasks/<the-plan-file-created-above>.md
    ```
 
 3. **Review the code:**
    ```
-   @[antigravity/workflows/review/code-review.md] Review my staged changes
+   /code-review Review my staged changes
    ```
 
 4. **Merge:**
    ```
-   @[antigravity/workflows/lifecycle/git-merge.md] Merge the changes
+   /git-merge Merge the changes
    ```
 
 ## Session Management Tips
@@ -131,4 +129,4 @@ Antigravity is an **autonomous agent** — it reads files, writes code, and runs
 
 ---
 
-Ready to dive deeper? Check the [Cookbook](cookbook.md) for real-world workflow recipes.
+Ready to dive deeper? Check the [Cookbook](cookbook.md) for real-world skill recipes.

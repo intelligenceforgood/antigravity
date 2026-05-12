@@ -1,6 +1,17 @@
+---
+name: Manual Verification
+description: Post-deployment verification: health checks, API smoke tests, UI verification
+---
+
 # Manual Verification
 
 **Role: Autonomous Agent.** Verify a deployment is working correctly after pushing to an environment.
+
+## When to Use This Skill
+
+- After deploying to dev or prod and need to verify everything works
+- The user says "verify", "smoke test", "check the deployment", or "is it working"
+- Following a `/deploy-to-dev` execution to confirm success
 
 ## Steps
 

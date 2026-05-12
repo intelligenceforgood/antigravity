@@ -1,6 +1,17 @@
+---
+name: Record Lesson
+description: Capture a lesson learned for future sessions
+---
+
 # Record Lesson
 
 **Role: Autonomous Agent.** Capture something learned during this session so future sessions benefit from it.
+
+## When to Use This Skill
+
+- A pitfall, pattern, or process improvement was discovered during a session
+- The user says "record lesson", "remember this", "note for future", or "capture learning"
+- A recurring mistake should be documented to prevent it in future sessions
 
 ## Steps
 

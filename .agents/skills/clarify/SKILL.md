@@ -1,6 +1,17 @@
+---
+name: Clarify
+description: Stop work and produce a structured clarification request when blocked
+---
+
 # Clarify
 
 **Role: Autonomous Agent.** You are blocked on an ambiguity or contradiction in the Task Plan, or you've discovered state that the plan did not anticipate. Do not guess. Produce a short structured question and stop work.
+
+## When to Use This Skill
+
+- The agent encounters ambiguity, contradiction, or unexpected state during task execution
+- The user says "clarify", "I'm confused", or the agent cannot determine the correct action
+- A plan's assumptions don't match the actual codebase state
 
 ## Steps
 

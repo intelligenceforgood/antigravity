@@ -1,6 +1,17 @@
+---
+name: Git Merge
+description: Full review + commit + push across all changed repos
+---
+
 # Git Merge
 
 **Role: Autonomous Agent.** Run the full pre-merge review, then commit and push all changed repos across the workspace to `main`. This is the single combined routine — no need to run `code-review` separately.
+
+## When to Use This Skill
+
+- Changes are ready to go to `main` and need to be committed and pushed
+- The user says "merge", "commit and push", "ship it", or "push to main"
+- Following successful code review or sprint wrapup
 
 > **CRITICAL:** This is an executable routine. Execute these instructions autonomously.
 
@@ -19,7 +30,7 @@
 
 For all changed repos identified in Phase 1:
 
-1. Read and execute the code review procedure from `antigravity/workflows/review/code-review.md`.
+1. Read and execute the code review procedure from the `/code-review` skill (`.agents/skills/code-review/SKILL.md`).
 2. Strictly enforce all rules in `antigravity/knowledge/standards/ci-cd.md` and `antigravity/knowledge/standards/security.md`.
 3. Actively look for scope drift: unrelated refactors, silent API changes, or unauthorized new dependencies.
 4. Do NOT proceed to Phase 3 if any quality gate fails or tests have failures in ANY repo.
@@ -43,7 +54,7 @@ Verify the working tree is merge-ready for EVERY changed repo:
 
 ## Phase 4 — Commit and Push
 
-Follow `antigravity/knowledge/operational/workflow.md` for all commit hygiene rules.
+Follow `antigravity/knowledge/operational/merge-discipline.md` for all commit hygiene rules.
 
 For each changed repo, execute:
 ```bash

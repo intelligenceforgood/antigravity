@@ -1,12 +1,25 @@
+---
+name: Hardening Sprint
+description: Bootstrap a platform hardening session from the review/execution plan
+---
+
 # Hardening Sprint
 
 **Role: Autonomous Agent.** Start a platform hardening work session. Load the review, execution plan, and guide you to the next task.
 
+## When to Use This Skill
+
+- Running through a platform review backlog or hardening plan
+- The user says "hardening sprint", "start hardening", or "platform review"
+- A review document with prioritized findings exists in `planning/tasks/`
+
 ## Steps
 
-1. **Load the plan and execution state.** Read these files:
-   - `planning/tasks/platform-review-2026-04-17.md` — the full architecture review (Parts 1–6)
-   - `planning/tasks/platform-hardening-execution.md` — the execution plan with checkboxes
+1. **Load the plan and execution state.** The user may specify a plan directly, or you should locate it:
+   - Search `planning/tasks/` for files matching `*hardening*`, `*review*`, or `*sprint*`.
+   - If multiple candidates exist, list them and ask the user to confirm.
+   - The plan must contain `- [ ]` checkboxes for progress tracking.
+   - If both a review document (findings) and an execution plan (checkboxes) exist, load both.
 
 2. **Identify progress.** Count checked (`- [x]`) vs unchecked (`- [ ]`) tasks. Report:
    - Current phase (the earliest phase with unchecked tasks)
@@ -26,6 +39,6 @@
    - Dependencies (met or unmet)
    - Suggested implementation approach
 
-5. **Confirm and execute.** Ask the user to confirm, then follow the `work-on-task` workflow pattern: implement → test → document → validate → summarize.
+5. **Confirm and execute.** Ask the user to confirm, then follow the `/work-on-task` skill pattern: implement → test → document → validate → summarize.
 
 6. **After completion.** Check off the task in the execution plan, update the progress table, and note the change in `planning/change_log.md`. Do NOT output modified code in chat — just list modified files.

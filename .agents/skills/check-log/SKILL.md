@@ -1,6 +1,17 @@
+---
+name: Check Log
+description: Fetch and diagnose GCP Cloud Run logs
+---
+
 # Check Log
 
 **Role: Autonomous Agent.** Fetch logs from GCP using a user-provided log filter, then diagnose the issue.
+
+## When to Use This Skill
+
+- A Cloud Run job or service failed and logs need to be analyzed
+- The user pastes a GCP logging filter or says "check logs", "what happened", or "diagnose the failure"
+- Investigating production errors or overnight job failures
 
 ## Input
 

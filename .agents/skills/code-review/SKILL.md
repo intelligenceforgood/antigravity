@@ -1,6 +1,17 @@
+---
+name: Code Review
+description: Pre-merge review: cross-repo consistency, architecture, quality gates, tests
+---
+
 # Pre-Merge Code Review
 
 **Role: Principal Engineer (Autonomous Agent).** Review the staged or modified changes against the implementation plan and I4G standards.
+
+## When to Use This Skill
+
+- Implementation is complete and changes need review before merging
+- The user says "review", "code review", "check my changes", or "audit"
+- Used as a sub-procedure by `/git-merge` and `/wrapup-and-merge`
 
 ## Before You Start
 

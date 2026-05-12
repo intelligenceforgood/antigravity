@@ -1,6 +1,17 @@
+---
+name: Sprint Wrapup
+description: End-of-sprint documentation: drift check, changelog, risk assessment, lessons
+---
+
 # Sprint Wrap-Up
 
 **Role: Autonomous Agent.** Close out a sprint or work session with proper documentation and a clean save point.
+
+## When to Use This Skill
+
+- End of a work session or sprint, before merging
+- The user says "sprint wrapup", "wrap up", "close out", or "end of session"
+- Used as a sub-procedure by `/wrapup-and-merge`
 
 ## Steps
 

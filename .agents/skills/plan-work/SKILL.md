@@ -1,6 +1,17 @@
+---
+name: Plan Work
+description: Break a feature/task into implementable steps with milestones, checklists, and risk analysis
+---
+
 # Plan Work
 
 **Role: Autonomous Agent.** Take a feature request, task description, or user story and break it into implementable steps. This routine produces a plan; it does not implement.
+
+## When to Use This Skill
+
+- Starting a new feature, refactoring initiative, or multi-step task
+- The user says "plan", "break down", "create steps", or "implementation plan"
+- A PRD or architecture doc exists and the next step is to create actionable tasks
 
 ## Before You Start
 
@@ -31,7 +42,7 @@
 
 6. **Track with todos.** Create a todo list to track progress through the steps.
 
-7. **Decide the next step.** Outline how the work should be incrementally executed — instruct the user to invoke the `work-on-task` workflow for each step.
+7. **Decide the next step.** Outline how the work should be incrementally executed — instruct the user to invoke the `/work-on-task` skill for each step.
 
 ## Template
 
@@ -54,4 +65,4 @@ Every task MUST explicitly mention the exact files it will modify with full path
 
 1. **Save the plan** using `write_to_file` to the `planning/tasks/` directory. Do NOT output the full plan text in chat — just confirm the file was saved and summarize.
 2. Use the exact `- [ ]` checkbox syntax for every task so progress can be tracked.
-3. After saving, tell the user the next step and how to invoke the `work-on-task` workflow.
+3. After saving, tell the user the next step and how to invoke `/work-on-task`.

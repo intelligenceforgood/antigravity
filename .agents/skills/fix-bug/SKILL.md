@@ -1,6 +1,17 @@
+---
+name: Fix Bug
+description: Diagnose and fix a reported bug autonomously
+---
+
 # Fix Bug
 
 **Role: Autonomous Agent.** Diagnose and fix the reported issue autonomously.
+
+## When to Use This Skill
+
+- A bug report, stack trace, or error description is provided
+- The user says "fix", "debug", "diagnose", or references a production error
+- The `/check-log` skill identified a code issue that needs fixing
 
 ## Before You Start
 
@@ -27,3 +38,10 @@
    - Provide a concise explanation of what was changed and why.
    - Do NOT output modified code in chat — just list the modified files.
    - Provide a run command to test the fix if applicable.
+
+## When Things Go Wrong
+
+- **Cannot reproduce:** If the bug only occurs in cloud, check environment-specific config (`I4G_ENV`, service URLs, secret values). Note the limitation and propose a cloud-only verification step.
+- **Fix causes new test failures:** Investigate whether the test assumptions are outdated. Fix the test if it's testing the wrong behavior; otherwise revert and reconsider the approach.
+- **Root cause is in a different repo:** Identify the upstream repo, make the fix there, and note the cross-repo dependency. Both changes must ship together.
+- **Unclear root cause:** If diagnosis takes more than 2 read-through cycles without progress, invoke the `/clarify` skill to ask the user for more context.

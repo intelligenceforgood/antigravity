@@ -4,18 +4,21 @@ These rules should be added to each team member's `user_rules` configuration in 
 
 ## How to Add
 
-In Antigravity settings, add the following to your global user rules. These persist across ALL conversations.
+1. Open a new chat with Antigravity.
+2. Copy the entire text from the `Recommended Rules` block below.
+3. Paste it into the chat with the message: **"Please remember the following rules globally for all future conversations:"**
+4. Antigravity will automatically extract and save these to its implicit memory, persisting them across all sessions.
 
 ---
 
 ## Recommended Rules
 
 ```text
-## I4G Workflow Rules
+## I4G Skill Rules
 
-### Workflow Awareness
-- The I4G team uses standardized workflows defined in `antigravity/workflows/`. When asked to plan work, fix bugs, review code, merge, deploy, or perform other SDLC activities, check if a relevant workflow exists and follow its procedure.
-- The workflow index is at `antigravity/workflows/INDEX.md`. Consult it when unsure which workflow applies.
+### Skill Awareness
+- The I4G team uses standardized skills natively installed in the `.agents/skills/` directory. When asked to plan work, fix bugs, review code, merge, deploy, or perform other SDLC activities, check if a relevant skill exists and execute it autonomously.
+- The skill catalog is at `antigravity/docs/skill-catalog.md`. Consult it when unsure which skill applies.
 
 ### Knowledge Loading
 - Before writing or modifying code in any I4G repository, proactively read the relevant standards from `antigravity/knowledge/standards/` (e.g., `python.md` for Python files, `typescript.md` for TypeScript/React files).

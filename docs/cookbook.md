@@ -1,8 +1,8 @@
-# Antigravity Cookbook: Real-World Workflows
+# Antigravity Cookbook: Real-World Skill Recipes
 
-This cookbook provides practical, copy-pasteable examples of how to use the Antigravity workflow framework to accomplish complex tasks within the I4G environment.
+This cookbook provides practical, copy-pasteable examples of how to use the Antigravity skill framework to accomplish complex tasks within the I4G environment.
 
-> **Golden Rule:** You are managing an autonomous engineer, not a chatbot. Give it context, point it to the workflow, and let it use its tools to do the heavy lifting.
+> **Golden Rule:** You are managing an autonomous engineer, not a chatbot. Give it context, invoke the skill, and let it use its tools to do the heavy lifting.
 
 ---
 
@@ -14,7 +14,7 @@ This cookbook provides practical, copy-pasteable examples of how to use the Anti
 
 1. **Ideation** — Generate a PRD:
    ```
-   @[antigravity/workflows/planning/prd.md] We need a new endpoint
+   /prd We need a new endpoint
    /api/v1/health/detailed that returns database connection status,
    and a React component to display this on the admin dashboard.
    ```
@@ -22,14 +22,14 @@ This cookbook provides practical, copy-pasteable examples of how to use the Anti
 
 2. **Architecture** — Design the technical approach:
    ```
-   @[antigravity/workflows/planning/arch.md] Based on the PRD at
+   /arch Based on the PRD at
    planning/prds/detailed_health.md, propose the architecture.
    ```
    The agent reads the architecture knowledge, designs the solution, and saves it.
 
 3. **Planning** — Break into implementable steps:
    ```
-   @[antigravity/workflows/planning/plan-work.md] Create a step-by-step
+   /plan-work Create a step-by-step
    implementation plan for the detailed health feature based on the PRD
    and architecture docs in planning/.
    ```
@@ -37,21 +37,21 @@ This cookbook provides practical, copy-pasteable examples of how to use the Anti
 
 4. **Execution** — Implement step by step:
    ```
-   @[antigravity/workflows/execution/work-on-task.md] Execute Step 1 from
+   /work-on-task Execute Step 1 from
    planning/tasks/detailed-health.md
    ```
    The agent reads the code, implements, writes tests, runs them, and checks off the step. Repeat for each step.
 
 5. **Review** — Pre-merge code review:
    ```
-   @[antigravity/workflows/review/code-review.md] Review the staged changes
+   /code-review Review the staged changes
    for the detailed health feature.
    ```
    The agent runs `git diff`, checks against standards, runs quality gates.
 
 6. **Merge** — Commit and push:
    ```
-   @[antigravity/workflows/lifecycle/git-merge.md] Merge the changes.
+   /git-merge Merge the changes.
    ```
    The agent reviews, cleans, commits, and pushes all changed repos.
 
@@ -65,7 +65,7 @@ This cookbook provides practical, copy-pasteable examples of how to use the Anti
 
 1. **Diagnosis** — Analyze logs:
    ```
-   @[antigravity/workflows/review/check-log.md] Check the logs for this error:
+   /check-log Check the logs for this error:
    resource.type = "cloud_run_job" resource.labels.job_name = "core-svc"
    severity>=ERROR timestamp >= "2026-05-10T00:00:00Z"
    ```
@@ -73,7 +73,7 @@ This cookbook provides practical, copy-pasteable examples of how to use the Anti
 
 2. **Fix** — Diagnose and fix:
    ```
-   @[antigravity/workflows/execution/fix-bug.md] The update_profile function
+   /fix-bug The update_profile function
    in core/src/i4g/api/users.py is failing with a database transaction timeout.
    Here is the stack trace: [PASTE]
    ```
@@ -81,7 +81,7 @@ This cookbook provides practical, copy-pasteable examples of how to use the Anti
 
 3. **Record the lesson**:
    ```
-   @[antigravity/workflows/lifecycle/record-lesson.md] Record the lesson about
+   /record-lesson Record the lesson about
    database transaction timeouts during profile updates.
    ```
    The agent adds it to `knowledge/operational/lessons-learned.md`.
@@ -111,7 +111,7 @@ This cookbook provides practical, copy-pasteable examples of how to use the Anti
 
 4. **Continue execution:**
    ```
-   @[antigravity/workflows/execution/work-on-task.md] Work on the next
+   /work-on-task Work on the next
    unchecked step from planning/tasks/auth-refactor.md
    ```
 
@@ -134,7 +134,7 @@ This cookbook provides practical, copy-pasteable examples of how to use the Anti
 
 2. **Plan the refactor:**
    ```
-   @[antigravity/workflows/planning/plan-work.md] Plan the refactoring steps
+   /plan-work Plan the refactoring steps
    to safely update all usages of format_date(), prioritizing minimizing
    test breakages. The impact analysis is above.
    ```
@@ -143,7 +143,7 @@ This cookbook provides practical, copy-pasteable examples of how to use the Anti
 
 4. **Cross-repo merge:**
    ```
-   @[antigravity/workflows/lifecycle/git-merge.md] Merge all the refactoring
+   /git-merge Merge all the refactoring
    changes across core and ui.
    ```
    The agent ensures both repos are committed and pushed together.
@@ -158,7 +158,7 @@ This cookbook provides practical, copy-pasteable examples of how to use the Anti
 
 1. **Start the hardening session:**
    ```
-   @[antigravity/workflows/lifecycle/hardening-sprint.md] Start a hardening sprint.
+   /hardening-sprint Start a hardening sprint.
    ```
    The agent loads the review plan, identifies the next unchecked task, loads relevant context, and presents the work plan.
 
@@ -166,13 +166,13 @@ This cookbook provides practical, copy-pasteable examples of how to use the Anti
 
 3. **Sprint wrapup:**
    ```
-   @[antigravity/workflows/lifecycle/sprint-wrapup.md] Sprint wrapup.
+   /sprint-wrapup Sprint wrapup.
    ```
    The agent documents completed work, assesses risks, and determines merge readiness.
 
 ---
 
-## 🔀 Recipe 6: Cross-Repo Merge Workflow
+## 🔀 Recipe 6: Cross-Repo Merge Skill
 
 **Scenario**: You've made changes in `core`, `ui`, and `ssi` that need to ship together.
 
@@ -180,10 +180,10 @@ This cookbook provides practical, copy-pasteable examples of how to use the Anti
 
 1. **Wrapup and merge** — The single "big button":
    ```
-   @[antigravity/workflows/lifecycle/wrapup-and-merge.md] Wrap up and merge
+   /wrapup-and-merge Wrap up and merge
    all changes for the investigation pipeline feature.
    ```
-   This chains three workflows automatically:
+   This chains three skills automatically:
    - Sprint wrapup (document, assess risks, record lessons)
    - Code review (audit all changed repos)
    - Git merge (commit and push all repos simultaneously)
@@ -202,7 +202,7 @@ This cookbook provides practical, copy-pasteable examples of how to use the Anti
 
 2. **Diagnose:**
    ```
-   @[antigravity/workflows/review/check-log.md] Check the logs for:
+   /check-log Check the logs for:
    resource.type = "cloud_run_job"
    resource.labels.job_name = "ingest-bootstrap"
    labels."run.googleapis.com/execution_name" = "ingest-bootstrap-xyz123"
@@ -216,12 +216,12 @@ This cookbook provides practical, copy-pasteable examples of how to use the Anti
 
 3. **Fix it** (if the agent deems it straightforward, it implements the fix automatically):
    ```
-   @[antigravity/workflows/execution/fix-bug.md] Fix the error identified above.
+   /fix-bug Fix the error identified above.
    ```
 
 4. **Deploy the fix:**
    ```
-   @[antigravity/workflows/lifecycle/deploy-to-dev.md] Deploy the fix to dev.
+   /deploy-to-dev Deploy the fix to dev.
    ```
 
 ---
@@ -234,6 +234,6 @@ This cookbook provides practical, copy-pasteable examples of how to use the Anti
 
 3. **Let the agent read.** Don't paste entire files into chat. Say "Read `core/src/i4g/api/reviews.py` and explain the search logic" — the agent reads it directly.
 
-4. **Trust the workflows.** The workflows encode hard-won operational knowledge. Use them instead of giving ad-hoc instructions for common tasks.
+4. **Trust the skills.** The skills encode hard-won operational knowledge. Use them instead of giving ad-hoc instructions for common tasks.
 
-5. **Record lessons.** When you discover a new pitfall or pattern, use the `record-lesson` workflow. It gets captured in `knowledge/operational/lessons-learned.md` for all future sessions.
+5. **Record lessons.** When you discover a new pitfall or pattern, use `/record-lesson`. It gets captured in `knowledge/operational/lessons-learned.md` for all future sessions.

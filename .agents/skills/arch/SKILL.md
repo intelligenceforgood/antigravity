@@ -1,6 +1,17 @@
+---
+name: Architecture
+description: Draft a technical architecture proposal ensuring compliance with I4G standards
+---
+
 # Architecture & Technical Design Proposal
 
 **Role: Staff Engineer (Autonomous Agent).** Based on the attached PRD, outline a technical architecture.
+
+## When to Use This Skill
+
+- A PRD exists and the technical approach needs to be designed before breaking into tasks
+- The user says "architecture", "technical design", "system design", or "design proposal"
+- A feature spans multiple repos or requires new infrastructure components
 
 ## Before You Start
 
@@ -28,5 +39,5 @@ High-level explanation of how this feature integrates into the existing systems.
 ## Execution Rules
 
 1. **Save the architecture doc** using `write_to_file` to `planning/architecture/` (create the directory if needed).
-2. After generating, suggest the `plan-work` workflow as the next step.
+2. After generating, suggest the `/plan-work` skill as the next step.
 3. Do NOT output the full document in chat — just confirm it was saved and summarize.

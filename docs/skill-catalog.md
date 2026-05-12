@@ -1,8 +1,6 @@
-# Routine Catalog
+# Skill Catalog
 
-Complete reference for every Antigravity workflow available to the I4G team. Each entry includes the workflow purpose, when to use it, what it expects as input, and what it produces.
-
-> For a compact table view, see the [Workflow Index](../workflows/INDEX.md).
+Complete reference for every Antigravity skill available to the I4G team. Each entry includes the purpose, when to use it, what it expects as input, and what it produces.
 
 ---
 
@@ -12,8 +10,7 @@ Complete reference for every Antigravity workflow available to the I4G team. Eac
 
 | Field | Value |
 |---|---|
-| **File** | `workflows/planning/plan-work.md` |
-| **Trigger** | `@[antigravity/workflows/planning/plan-work.md] <description>` |
+| **Skill Path** | `.agents/skills/plan-work` |
 | **Shorthand** | "plan work for X" |
 | **When** | Starting a new feature, refactoring initiative, or multi-step task |
 | **Input** | Task description, PRD, user story, or feature request |
@@ -24,8 +21,7 @@ Complete reference for every Antigravity workflow available to the I4G team. Eac
 
 | Field | Value |
 |---|---|
-| **File** | `workflows/planning/prd.md` |
-| **Trigger** | `@[antigravity/workflows/planning/prd.md] <description>` |
+| **Skill Path** | `.agents/skills/prd` |
 | **Shorthand** | "create a PRD for X" |
 | **When** | You have a feature idea but need it structured before planning |
 | **Input** | Feature description, user feedback, or business requirement |
@@ -36,8 +32,7 @@ Complete reference for every Antigravity workflow available to the I4G team. Eac
 
 | Field | Value |
 |---|---|
-| **File** | `workflows/planning/arch.md` |
-| **Trigger** | `@[antigravity/workflows/planning/arch.md] <description>` |
+| **Skill Path** | `.agents/skills/arch` |
 | **Shorthand** | "design the architecture for X" |
 | **When** | You have a PRD and need the technical approach before breaking into tasks |
 | **Input** | PRD or feature description |
@@ -52,8 +47,7 @@ Complete reference for every Antigravity workflow available to the I4G team. Eac
 
 | Field | Value |
 |---|---|
-| **File** | `workflows/execution/work-on-task.md` |
-| **Trigger** | `@[antigravity/workflows/execution/work-on-task.md] <task reference>` |
+| **Skill Path** | `.agents/skills/work-on-task` |
 | **Shorthand** | "work on task step N" |
 | **When** | You have a plan and need to implement one or more steps |
 | **Input** | Reference to a plan file and the specific step(s) to execute |
@@ -64,8 +58,7 @@ Complete reference for every Antigravity workflow available to the I4G team. Eac
 
 | Field | Value |
 |---|---|
-| **File** | `workflows/execution/tdd.md` |
-| **Trigger** | `@[antigravity/workflows/execution/tdd.md] <description>` |
+| **Skill Path** | `.agents/skills/tdd` |
 | **Shorthand** | "TDD for X" |
 | **When** | Implementing logic that benefits from test-first development |
 | **Input** | Feature description or spec |
@@ -76,8 +69,7 @@ Complete reference for every Antigravity workflow available to the I4G team. Eac
 
 | Field | Value |
 |---|---|
-| **File** | `workflows/execution/fix-bug.md` |
-| **Trigger** | `@[antigravity/workflows/execution/fix-bug.md] <bug description>` |
+| **Skill Path** | `.agents/skills/fix-bug` |
 | **Shorthand** | "fix the bug in X" |
 | **When** | A bug has been reported or observed |
 | **Input** | Stack trace, error description, reproduction steps |
@@ -88,8 +80,7 @@ Complete reference for every Antigravity workflow available to the I4G team. Eac
 
 | Field | Value |
 |---|---|
-| **File** | `workflows/execution/clarify.md` |
-| **Trigger** | `@[antigravity/workflows/execution/clarify.md]` |
+| **Skill Path** | `.agents/skills/clarify` |
 | **Shorthand** | "clarify X" |
 | **When** | The agent is blocked by ambiguity or contradiction in a plan |
 | **Input** | Context from the current work session |
@@ -104,8 +95,7 @@ Complete reference for every Antigravity workflow available to the I4G team. Eac
 
 | Field | Value |
 |---|---|
-| **File** | `workflows/review/code-review.md` |
-| **Trigger** | `@[antigravity/workflows/review/code-review.md]` |
+| **Skill Path** | `.agents/skills/code-review` |
 | **Shorthand** | "review the code" or "code review" |
 | **When** | Before merging; after completing implementation |
 | **Input** | Staged or uncommitted changes (auto-detected via `git diff`) |
@@ -116,8 +106,7 @@ Complete reference for every Antigravity workflow available to the I4G team. Eac
 
 | Field | Value |
 |---|---|
-| **File** | `workflows/review/check-log.md` |
-| **Trigger** | `@[antigravity/workflows/review/check-log.md] <log filter>` |
+| **Skill Path** | `.agents/skills/check-log` |
 | **Shorthand** | "check the logs for X" |
 | **When** | A Cloud Run job failed or you see errors in GCP logging |
 | **Input** | GCP logging filter query |
@@ -128,8 +117,7 @@ Complete reference for every Antigravity workflow available to the I4G team. Eac
 
 | Field | Value |
 |---|---|
-| **File** | `workflows/review/manual-verification.md` |
-| **Trigger** | `@[antigravity/workflows/review/manual-verification.md]` |
+| **Skill Path** | `.agents/skills/manual-verification` |
 | **Shorthand** | "verify the deployment" |
 | **When** | After deploying to dev or prod |
 | **Input** | Environment to verify (dev or prod) |
@@ -144,8 +132,7 @@ Complete reference for every Antigravity workflow available to the I4G team. Eac
 
 | Field | Value |
 |---|---|
-| **File** | `workflows/lifecycle/sprint-wrapup.md` |
-| **Trigger** | `@[antigravity/workflows/lifecycle/sprint-wrapup.md]` |
+| **Skill Path** | `.agents/skills/sprint-wrapup` |
 | **Shorthand** | "sprint wrapup" |
 | **When** | End of a work session or sprint; before merging |
 | **Input** | Current workspace state (auto-detected) |
@@ -156,8 +143,7 @@ Complete reference for every Antigravity workflow available to the I4G team. Eac
 
 | Field | Value |
 |---|---|
-| **File** | `workflows/lifecycle/git-merge.md` |
-| **Trigger** | `@[antigravity/workflows/lifecycle/git-merge.md]` |
+| **Skill Path** | `.agents/skills/git-merge` |
 | **Shorthand** | "merge" or "git merge" |
 | **When** | Changes are ready to go to `main` |
 | **Input** | Changed repos (auto-detected via `git status`) |
@@ -168,8 +154,7 @@ Complete reference for every Antigravity workflow available to the I4G team. Eac
 
 | Field | Value |
 |---|---|
-| **File** | `workflows/lifecycle/wrapup-and-merge.md` |
-| **Trigger** | `@[antigravity/workflows/lifecycle/wrapup-and-merge.md]` |
+| **Skill Path** | `.agents/skills/wrapup-and-merge` |
 | **Shorthand** | "wrapup and merge" |
 | **When** | You want the full end-of-sprint pipeline in one command |
 | **Input** | Current workspace state |
@@ -180,8 +165,7 @@ Complete reference for every Antigravity workflow available to the I4G team. Eac
 
 | Field | Value |
 |---|---|
-| **File** | `workflows/lifecycle/deploy-to-dev.md` |
-| **Trigger** | `@[antigravity/workflows/lifecycle/deploy-to-dev.md]` |
+| **Skill Path** | `.agents/skills/deploy-to-dev` |
 | **Shorthand** | "deploy to dev" |
 | **When** | After merging, ready to deploy to `i4g-dev` |
 | **Input** | Recently merged changes |
@@ -192,8 +176,7 @@ Complete reference for every Antigravity workflow available to the I4G team. Eac
 
 | Field | Value |
 |---|---|
-| **File** | `workflows/lifecycle/record-lesson.md` |
-| **Trigger** | `@[antigravity/workflows/lifecycle/record-lesson.md] <lesson>` |
+| **Skill Path** | `.agents/skills/record-lesson` |
 | **Shorthand** | "record a lesson about X" |
 | **When** | You learned something that future sessions should know |
 | **Input** | The lesson (from conversation or user description) |
@@ -204,8 +187,7 @@ Complete reference for every Antigravity workflow available to the I4G team. Eac
 
 | Field | Value |
 |---|---|
-| **File** | `workflows/lifecycle/hardening-sprint.md` |
-| **Trigger** | `@[antigravity/workflows/lifecycle/hardening-sprint.md]` |
+| **Skill Path** | `.agents/skills/hardening-sprint` |
 | **Shorthand** | "start hardening sprint" |
 | **When** | Running through a platform review backlog |
 | **Input** | Hardening plan in `planning/tasks/` |
@@ -214,9 +196,9 @@ Complete reference for every Antigravity workflow available to the I4G team. Eac
 
 ---
 
-## Workflow Chains (Common Sequences)
+## Skill Chains (Common Sequences)
 
-These are typical end-to-end workflow chains for common development scenarios:
+These are typical end-to-end skill chains for common development scenarios:
 
 ### New Feature
 ```

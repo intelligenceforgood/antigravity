@@ -1,6 +1,17 @@
+---
+name: Deploy to Dev
+description: Pre-flight checklist: smoke test, build, deploy to i4g-dev
+---
+
 # Deploy to Dev
 
 **Role: Autonomous Agent.** Pre-flight checklist before deploying to the `i4g-dev` environment.
+
+## When to Use This Skill
+
+- Changes have been merged and need to be deployed to the dev environment
+- The user says "deploy", "deploy to dev", "push to cloud", or "build and deploy"
+- Following a successful `/git-merge` when cloud deployment is needed
 
 ## Before You Start
 
@@ -8,7 +19,7 @@
 
 ## Steps
 
-1. **Pre-merge review first.** Ensure the pre-merge review routine has been completed. If not, read and execute `antigravity/workflows/review/code-review.md` first.
+1. **Pre-merge review first.** Ensure the pre-merge review has been completed. If not, read and execute the `/code-review` skill (`.agents/skills/code-review/SKILL.md`) first.
 
 2. **Local smoke test.** Verify the code works locally:
    ```bash
@@ -35,8 +46,15 @@
 6. **Post-deploy verification.** After Cloud Run picks up the new image:
    - Check Cloud Run logs for startup errors
    - Hit the health endpoint
-   - Consider running the manual verification workflow
+   - Consider running the `/manual-verification` skill
 
 7. **Update change log.** Record the deployment in `planning/change_log.md` with date and what was deployed.
 
 8. **Dev/prod parity.** If this deployment adds new Cloud Run jobs or env vars, check that `infra/environments/app/prod/terraform.tfvars` is updated to match.
+
+## When Things Go Wrong
+
+- **Docker build fails:** Check the Dockerfile and build context. Common issues: missing dependencies, Python version mismatch, or stale `requirements.txt` / lockfile.
+- **Migration fails on dev:** Do NOT attempt on prod. Examine the migration script for auto-generator template errors (a known pitfall — see lessons-learned). Write a manual migration if needed.
+- **Cloud Run service crashes on startup:** Check logs with `/check-log`. Common causes: missing env var, Secret Manager permission, or import error not caught locally.
+- **Smoke test fails locally:** Do not deploy. Diagnose with `/fix-bug` first.

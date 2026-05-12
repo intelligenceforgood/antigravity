@@ -1,6 +1,17 @@
+---
+name: Work on Task
+description: Implement a task from a plan with testing, documentation, and validation
+---
+
 # Work on Task
 
 **Role: Autonomous Agent.** Execute a single implementation task, or a group of tasks in the same sprint (or phase) with proper testing and documentation.
+
+## When to Use This Skill
+
+- A task plan exists in `planning/tasks/` and specific steps need to be implemented
+- The user says "work on", "implement", "execute step", or "do task"
+- Following up on a `/plan-work` output to execute the actual code changes
 
 ## Before You Start
 
@@ -36,3 +47,10 @@
    ```
 
 6. **Summarize.** Report what was done, tests that pass, and any follow-up items. Do NOT output modified code in chat — just list the modified files.
+
+## When Things Go Wrong
+
+- **Tests fail after your change:** Examine the failure. If it's a pre-existing failure unrelated to your change, note it and proceed. If your change caused it, fix before continuing.
+- **Import or dependency error:** Check `pyproject.toml` / `package.json`. If a new dependency is needed, install it and document in the plan.
+- **Blocked by missing context or ambiguity:** Invoke the `/clarify` skill instead of guessing.
+- **Task is untestable** (e.g., requires API key or running service): Mark the task as `[-]` in the plan, note the blocker, and move on.

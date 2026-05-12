@@ -1,6 +1,17 @@
+---
+name: TDD
+description: Implement via Test-Driven Development (Red → Green → Refactor)
+---
+
 # TDD Template
 
 **Role: Autonomous Agent.** Implement features via Test-Driven Development.
+
+## When to Use This Skill
+
+- The user explicitly requests TDD or test-first development
+- Implementing logic with complex edge cases that benefit from tests before code
+- The user says "TDD", "test-driven", or "write tests first"
 
 ## Before You Start
 
@@ -22,3 +33,9 @@
    - Refactor the code for clarity, performance, and adherence to the language-specific standards.
    - Ensure tests remain green.
    - Do NOT output refactored code in chat.
+
+## When Things Go Wrong
+
+- **Red phase test doesn't fail:** The test is not actually testing the intended behavior. Rewrite the assertion to target the specific functionality.
+- **Green phase breaks other tests:** Your implementation has a side effect. Review the broader test suite, understand the dependency, and adjust the implementation.
+- **Fixtures or mocking issues:** Check `antigravity/knowledge/operational/lessons-learned.md` for known pitfalls (e.g., SQLite NOT NULL constraints, mocking background tasks).

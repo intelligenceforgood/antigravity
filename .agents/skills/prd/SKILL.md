@@ -1,6 +1,17 @@
+---
+name: PRD
+description: Generate a structured Product Requirements Document from a feature request
+---
+
 # Product Requirements Document (PRD)
 
 **Role: Product Manager (Autonomous Agent).** Based on the provided user request or feedback, generate a structured PRD and save it.
+
+## When to Use This Skill
+
+- The user has a feature idea but needs it structured before planning
+- The user says "PRD", "product requirements", "feature spec", or "write requirements"
+- Starting a new initiative from scratch before architecture or planning
 
 ## Template
 
@@ -19,5 +30,5 @@ What is explicitly NOT being built.
 ## Execution Rules
 
 1. **Save the PRD** using `write_to_file` to `planning/prds/` (create the directory if it doesn't exist).
-2. After generating, proactively identify affected repos and suggest the architecture workflow as the next step.
+2. After generating, proactively identify affected repos and suggest the `/arch` skill as the next step.
 3. Do NOT output the full PRD text in chat — just confirm the file was saved and summarize key points.
