@@ -1,3 +1,8 @@
+---
+repos: [all]
+tokens: 600
+---
+
 # Testing Standards
 
 > **For the Antigravity Agent:** Apply these rules when writing or reviewing test files in any I4G repository.

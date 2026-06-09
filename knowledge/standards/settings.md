@@ -1,3 +1,8 @@
+---
+repos: [core, ssi]
+tokens: 400
+---
+
 # Settings & Configuration Standards
 
 > **For the Antigravity Agent:** Apply these rules when working with configuration files, settings, or environment variables.

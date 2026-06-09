@@ -1,3 +1,8 @@
+---
+repos: [core, ssi, ml, infra]
+tokens: 400
+---
+
 # Docker Standards
 
 > **For the Antigravity Agent:** Apply these rules when writing or reviewing Dockerfiles and container configurations.

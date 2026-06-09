@@ -1,3 +1,8 @@
+---
+repos: [core, ssi, ml]
+tokens: 800
+---
+
 # Python Standards
 
 > **For the Antigravity Agent:** Apply these rules when writing or reviewing Python files in any I4G repository (`core/`, `ssi/`, `ml/`).

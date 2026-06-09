@@ -1,3 +1,8 @@
+---
+repos: [core, ssi, ml]
+tokens: 500
+---
+
 # BigQuery & ETL Standards
 
 > **For the Antigravity Agent:** Apply these rules when working with SQL files, ETL pipelines, BigQuery schemas, or ML training workflows.

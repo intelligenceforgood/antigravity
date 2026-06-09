@@ -1,3 +1,8 @@
+---
+repos: [infra]
+tokens: 500
+---
+
 # Terraform / HCL Standards
 
 > **For the Antigravity Agent:** Apply these rules when working with Terraform files in the `infra/` repository.

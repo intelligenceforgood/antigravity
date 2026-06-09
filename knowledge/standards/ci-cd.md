@@ -1,3 +1,8 @@
+---
+repos: [core, ssi, ml, ui, infra]
+tokens: 600
+---
+
 # CI/CD Pipeline Standards
 
 > **For the Antigravity Agent:** Consult this when reviewing CI/CD configurations, deployment workflows, or GitHub Actions files.

@@ -1,3 +1,8 @@
+---
+repos: [ui, mobile]
+tokens: 700
+---
+
 # TypeScript / React Standards
 
 > **For the Antigravity Agent:** Apply these rules when writing or reviewing TypeScript and React files in the `ui/` repository.

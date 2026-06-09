@@ -1,3 +1,8 @@
+---
+repos: [docs]
+tokens: 300
+---
+
 # Documentation & GitBook Discipline
 
 > **For the Antigravity Agent:** Apply these rules when working with documentation in the `docs/` repository.
