@@ -1,6 +1,7 @@
 ---
 name: Fix Bug
 description: Diagnose and fix a reported bug autonomously
+model: Gemini 3.5 Flash (H/M) / Gemini 3.1 Pro (High)
 ---
 
 # Fix Bug
@@ -33,11 +34,14 @@ description: Diagnose and fix a reported bug autonomously
    - Implement the bug fix following the architectural and coding standards.
    - Ensure the fix addresses the root cause, not just the symptom.
 
-4. **Verify:**
+4. **Verify**:
    - Run relevant tests to verify the fix: `conda run -n i4g pytest tests/unit -x`
    - Provide a concise explanation of what was changed and why.
    - Do NOT output modified code in chat — just list the modified files.
    - Provide a run command to test the fix if applicable.
+   - **Model Routing & Token Economy**:
+     - Run standard bugs on **Gemini 3.5 Flash (H/M)**. For complex multi-file bugs or stack trace log analysis, use **Gemini 3.1 Pro (High)**.
+     - Strictly practice targeted editing: use `replace_file_content` / `multi_replace_file_content` with anchor context lines to edit target segments. Avoid full file replacements.
 
 ## When Things Go Wrong
 

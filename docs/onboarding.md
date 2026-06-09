@@ -129,4 +129,18 @@ Antigravity is an **autonomous agent** — it reads files, writes code, and runs
 
 ---
 
+## Step 7: Token Economy & Model Routing
+
+To maximize development efficiency and minimize token costs (especially on restricted developer subscription tiers like AI Pro), Antigravity standardizes on a **dual-model routing strategy**:
+
+- **Planning & Architecture (Opus 4.6 / Sonnet 4.6)**: Reserve the highest reasoning model, **Opus 4.6**, for structural planning skills (`/prd`, `/arch`, `/plan-work`). Use **Sonnet 4.6** for high-value `/code-review` tasks. We do not use Gemini Pro for architecture or planning due to reasoning limitations.
+- **Execution & Implementation (Gemini 3.5 Flash / Gemini 3.1 Pro)**: Switch your active model to fast, low-cost, high-context Gemini models for `/work-on-task`, `/fix-bug`, `/tdd`, and operational commands.
+  - Use **Gemini 3.5 Flash (H/M/L)** for standard coding, unit testing, and utility execution.
+  - Use **Gemini 3.1 Pro (H/L)** when resolving complex multi-file bugs or troubleshooting detailed logs.
+
+By executing execution-tier tasks on cheaper models, you conserve premium model quotas for critical structural design decisions.
+
+---
+
 Ready to dive deeper? Check the [Cookbook](cookbook.md) for real-world skill recipes.
+

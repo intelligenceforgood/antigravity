@@ -16,6 +16,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | Task description, PRD, user story, or feature request |
 | **Output** | Implementation plan saved to `planning/tasks/` |
 | **Next** | `work-on-task` for each step |
+| **Recommended Model** | Opus 4.6 |
 
 ### prd
 
@@ -27,6 +28,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | Feature description, user feedback, or business requirement |
 | **Output** | PRD saved to `planning/prds/` |
 | **Next** | `arch` for technical design |
+| **Recommended Model** | Opus 4.6 |
 
 ### arch
 
@@ -38,6 +40,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | PRD or feature description |
 | **Output** | Architecture document saved to `planning/architecture/` |
 | **Next** | `plan-work` for implementation planning |
+| **Recommended Model** | Opus 4.6 |
 
 ---
 
@@ -53,6 +56,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | Reference to a plan file and the specific step(s) to execute |
 | **Output** | Code changes, tests, docs updates, plan checkboxes updated |
 | **Next** | Next step, or `code-review` when done |
+| **Recommended Model** | Gemini 3.5 Flash (H/M) |
 
 ### tdd
 
@@ -64,6 +68,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | Feature description or spec |
 | **Output** | Tests written first, then implementation, then refactored |
 | **Next** | `code-review` |
+| **Recommended Model** | Gemini 3.5 Flash (H/M) / Gemini 3.1 Pro (Low) |
 
 ### fix-bug
 
@@ -75,6 +80,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | Stack trace, error description, reproduction steps |
 | **Output** | Bug fix committed, regression test added |
 | **Next** | `code-review` or `git-merge` |
+| **Recommended Model** | Gemini 3.5 Flash (H/M) / Gemini 3.1 Pro (High) |
 
 ### clarify
 
@@ -86,6 +92,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | Context from the current work session |
 | **Output** | Structured clarification request; work paused |
 | **Next** | User answers, then resume `work-on-task` |
+| **Recommended Model** | Gemini 3.5 Flash / 3.1 Pro |
 
 ---
 
@@ -101,6 +108,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | Staged or uncommitted changes (auto-detected via `git diff`) |
 | **Output** | List of issues, improvements, or "Looks good to merge" |
 | **Next** | `git-merge` if approved |
+| **Recommended Model** | Sonnet 4.6 |
 
 ### check-log
 
@@ -112,6 +120,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | GCP logging filter query |
 | **Output** | Root cause analysis and proposed fix |
 | **Next** | `fix-bug` if a code fix is needed |
+| **Recommended Model** | Gemini 3.5 Flash (Low) / Gemini 3.1 Pro (High) |
 
 ### manual-verification
 
@@ -123,6 +132,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | Environment to verify (dev or prod) |
 | **Output** | Pass/fail for each verification check |
 | **Next** | Fix issues or sign off |
+| **Recommended Model** | Gemini 3.5 Flash (Low) |
 
 ---
 
@@ -138,6 +148,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | Current workspace state (auto-detected) |
 | **Output** | Updated task plan, change log entry, risk assessment, lessons recorded |
 | **Next** | `git-merge` |
+| **Recommended Model** | Opus 4.6 / Gemini 3.1 Pro (High) |
 
 ### git-merge
 
@@ -149,6 +160,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | Changed repos (auto-detected via `git status`) |
 | **Output** | Code reviewed, committed, and pushed to `main` |
 | **Next** | `deploy-to-dev` if deploying |
+| **Recommended Model** | Gemini 3.5 Flash (Low) |
 
 ### wrapup-and-merge
 
@@ -160,6 +172,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | Current workspace state |
 | **Output** | Sprint wrapped up + code reviewed + committed + pushed |
 | **Next** | `deploy-to-dev` |
+| **Recommended Model** | Opus 4.6 |
 
 ### deploy-to-dev
 
@@ -171,6 +184,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | Recently merged changes |
 | **Output** | Pre-flight checks, Docker images built, deployment initiated |
 | **Next** | `manual-verification` |
+| **Recommended Model** | Gemini 3.5 Flash (Low) |
 
 ### record-lesson
 
@@ -182,6 +196,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | The lesson (from conversation or user description) |
 | **Output** | Entry added to `knowledge/operational/lessons-learned.md` |
 | **Next** | Continue work |
+| **Recommended Model** | Gemini 3.5 Flash (Low) |
 
 ### hardening-sprint
 
@@ -193,6 +208,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | Hardening plan in `planning/tasks/` |
 | **Output** | Next task identified, executed, and checked off |
 | **Next** | Repeat or `sprint-wrapup` |
+| **Recommended Model** | Opus 4.6 |
 
 ---
 

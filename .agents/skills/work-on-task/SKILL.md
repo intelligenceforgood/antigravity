@@ -1,6 +1,7 @@
 ---
 name: Work on Task
 description: Implement a task from a plan with testing, documentation, and validation
+model: Gemini 3.5 Flash (H/M) / Gemini 3.1 Pro (Low/High)
 ---
 
 # Work on Task
@@ -47,6 +48,10 @@ description: Implement a task from a plan with testing, documentation, and valid
    ```
 
 6. **Summarize.** Report what was done, tests that pass, and any follow-up items. Do NOT output modified code in chat — just list the modified files.
+
+7. **Model Routing & Token Economy**:
+   - Run this execution-tier skill on **Gemini 3.5 Flash (H/M)** (standard coding tasks) or **Gemini 3.1 Pro (H/L)** (complex multi-file adjustments). Do not run execution on Opus to conserve quota.
+   - Strictly practice targeted editing: use `replace_file_content` / `multi_replace_file_content` with anchor context lines to edit target segments. Avoid full file replacements.
 
 ## When Things Go Wrong
 

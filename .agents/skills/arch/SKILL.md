@@ -1,6 +1,7 @@
 ---
 name: Architecture
 description: Draft a technical architecture proposal ensuring compliance with I4G standards
+model: Opus 4.6
 ---
 
 # Architecture & Technical Design Proposal
@@ -41,3 +42,4 @@ High-level explanation of how this feature integrates into the existing systems.
 1. **Save the architecture doc** using `write_to_file` to `planning/architecture/` (create the directory if needed).
 2. After generating, suggest the `/plan-work` skill as the next step.
 3. Do NOT output the full document in chat — just confirm it was saved and summarize.
+4. **Model Routing**: This is a planning-tier skill. Run this skill strictly on **Opus 4.6** to ensure architectural soundness. Do not use Gemini Pro due to trust/reasoning limits.

@@ -43,6 +43,15 @@ These rules should be added to each team member's `user_rules` configuration in 
 - Python: Type hints on all functions, Google-style docstrings on public methods, settings via `get_settings()`, stores via factories.
 - TypeScript/React: Follow Next.js 15 patterns, await dynamic route params, use the SDK client for API calls.
 - Always run relevant tests before considering a task complete.
+
+### Model Routing & Token Economy
+- Route planning, design, and architecture skills (`/prd`, `/arch`, `/plan-work`) strictly to the high-reasoning **Opus 4.6** model. (Do not use Gemini Pro for architecture).
+- Route code review and verification (`/code-review`) to the **Sonnet 4.6** model.
+- Route execution, coding, and diagnostic tasks to cost-effective Gemini models:
+  - **Gemini 3.5 Flash (H/M)** for daily coding, test suites, and bug-fixing.
+  - **Gemini 3.5 Flash (Low)** for simple script updates, log reading, and running command lines.
+  - **Gemini 3.1 Pro (H/L)** for complex troubleshooting, trace logs, or multi-repo integrations.
+- Practice token conservation: prefer targeted edits using search-and-replace (`replace_file_content`) over re-writing large sections of files. Avoid reading entire files if search/grep can find the context.
 ```
 
 ---

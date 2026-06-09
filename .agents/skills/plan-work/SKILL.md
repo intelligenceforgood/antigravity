@@ -1,6 +1,7 @@
 ---
 name: Plan Work
 description: Break a feature/task into implementable steps with milestones, checklists, and risk analysis
+model: Opus 4.6
 ---
 
 # Plan Work
@@ -66,3 +67,5 @@ Every task MUST explicitly mention the exact files it will modify with full path
 1. **Save the plan** using `write_to_file` to the `planning/tasks/` directory. Do NOT output the full plan text in chat — just confirm the file was saved and summarize.
 2. Use the exact `- [ ]` checkbox syntax for every task so progress can be tracked.
 3. After saving, tell the user the next step and how to invoke `/work-on-task`.
+4. **Model Routing**: This is a planning-tier skill. Run this skill strictly on **Opus 4.6** to ensure complete file coverage mapping. Do not use Gemini Pro.
+5. **Cheaper Execution Gearing**: When breaking the task into steps, design them to be executed independently by low-cost models (Gemini 3.5 Flash / 3.1 Pro). Ensure each task defines a narrow, file-isolated boundary.
