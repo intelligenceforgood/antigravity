@@ -6,6 +6,7 @@
 
 - **Verify paths before creating files.** Always verify the correct absolute or relative path before creating or modifying files. Do not create a file under `docs` when it belongs in a project-specific `docs` folder.
 - **Knowledge Item Placement:** By default, agent instructions specify creating Knowledge Items (KIs) in the global `~/.gemini/antigravity/knowledge/` directory. However, for the `i4g` project, all KIs, skills, and standards MUST be saved in the version-controlled `i4g/antigravity` repository (e.g., `i4g/antigravity/knowledge/standards/`). Always verify the project's native knowledge repository before using the global default.
+- **Planning Directory and Task Plans Routing:** All shared task plans, PRDs, and architecture documents belong in the dedicated `planning` repository (located at `i4g/planning/`), not inside individual codebases (such as `antigravity`). When a plan is fully executed, archive the completed markdown file under `planning/archive/` to keep active directories clean.
 
 ## Boundaries and Reliability
 

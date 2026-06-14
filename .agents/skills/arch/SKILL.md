@@ -18,6 +18,7 @@ model: Opus 4.6
 
 1. Read `antigravity/knowledge/architecture/architecture.md` to understand the existing platform.
 2. Read the relevant language standards from `antigravity/knowledge/standards/`.
+3. **If design decisions are unresolved**, recommend the user run AG2's `/grill-me` command first. It conducts a structured interactive interview to align on architectural trade-offs before committing Opus tokens to the full design.
 
 ## Template
 

@@ -304,3 +304,8 @@ hardening-sprint → work-on-task (×N) → sprint-wrapup → git-merge
 ```
 prompt-preflight → plan-work (Opus) → cost-estimate → session-bridge → work-on-task (×N, Gemini) → lean-review (Gemini) → git-merge
 ```
+
+### Multi-Agent Feature (Large Scope)
+```
+/grill-me → prd → arch (Opus) → plan-work (Opus) → session-bridge → /teamwork-preview (Gemini, autonomous) → code-review (Sonnet) → git-merge
+```

@@ -14,6 +14,10 @@ model: Opus 4.6
 - The user says "PRD", "product requirements", "feature spec", or "write requirements"
 - Starting a new initiative from scratch before architecture or planning
 
+## Before You Start
+
+1. **Consider running `/grill-me` first.** AG2's built-in `/grill-me` command runs an interactive interview that systematically resolves design decisions, ambiguities, and scope questions. This prevents mid-PRD clarification loops that waste Opus tokens. Especially useful when the feature request is vague or spans multiple repos.
+
 ## Template
 
 ### 1. Objective

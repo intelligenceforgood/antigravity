@@ -121,3 +121,4 @@ Generated: <ISO timestamp> | Repos: <list>
 2. Do NOT output the full map in chat — confirm it was saved, state the token count estimate, and summarize the key findings in 3–5 bullets.
 3. If a recent map exists (< 7 days old) for the same slice, ask the user whether to regenerate or reuse.
 4. This skill is **read-only** — it must never modify source code, only read and report.
+5. **Use the `research` subagent for background scanning.** When generating a context map for a large slice (4+ repos), consider invoking AG2's built-in `research` subagent to scan repos in parallel. The research subagent is read-only by design and returns summarized findings — a natural fit for context extraction.

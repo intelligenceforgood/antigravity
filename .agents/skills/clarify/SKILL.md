@@ -40,4 +40,6 @@ description: Stop work and produce a structured clarification request when block
    </clarify>
    ```
 
-4. **Do not keep working.** Do not commit speculative changes. Leave the workspace in a clean state.
+4. **Use AG2's `ask_question` tool when options are clear.** If the clarification has discrete options (e.g., "Should we use approach A or B?"), use the `ask_question` tool instead of free-form text. This renders an interactive multi-choice modal that is faster for the user and produces unambiguous structured responses — saving tokens on parsing.
+
+5. **Do not keep working.** Do not commit speculative changes. Leave the workspace in a clean state.

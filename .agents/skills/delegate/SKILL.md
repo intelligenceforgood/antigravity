@@ -104,11 +104,24 @@ Do NOT include code snippets, full file contents, or verbose explanations.
 
 ### 3. EXECUTE — Invoke Subagents
 
-For **parallelizable units**: invoke all subagents simultaneously using `invoke_subagent` with multiple entries in the `Subagents` array. Each subagent:
+**Prefer specialized subagents over generic ones.** Use AG2's `define_subagent` tool to create repo-specific agents with targeted system prompts and knowledge. This reduces per-subagent token overhead by pre-loading only the relevant standards.
+
+**Recommended subagent definitions (define once per session, reuse across delegations):**
+
+| Subagent Name | System Prompt Should Include | Use For |
+|:---|:---|:---|
+| `core_impl` | `core/AGENTS.md` + `antigravity/knowledge/standards/python.md` | Backend API changes in `core/` |
+| `ssi_impl` | `ssi/AGENTS.md` + `antigravity/knowledge/standards/python.md` | SSI agent/adapter changes in `ssi/` |
+| `ui_impl` | `ui/AGENTS.md` + `antigravity/knowledge/standards/typescript.md` | Frontend/React changes in `ui/` |
+| `infra_impl` | `infra/AGENTS.md` + `antigravity/knowledge/standards/terraform.md` | Infrastructure changes in `infra/` |
+
+If a delegation unit spans repos not covered above, fall back to the generic `self` subagent type.
+
+For **parallelizable units**: invoke all subagents simultaneously using `invoke_subagent`. Each subagent:
 - Gets `enable_write_tools: true`
 - Workspace mode: `inherit`
 - Receives the delegation brief as its prompt
-- Has a descriptive `Role` (e.g., "Backend API Implementer", "Frontend Route Builder")
+- Has a descriptive `Role` (e.g., "Core Backend Implementer", "UI Route Builder")
 
 For **sequential units**: invoke one at a time, waiting for completion before the next.
 

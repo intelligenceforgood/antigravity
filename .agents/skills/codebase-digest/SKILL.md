@@ -140,3 +140,4 @@ After all repos are digested, report:
 - Keep each digest under **2K tokens** — summarize aggressively
 - Use `grep` and `find` with narrow patterns — never read entire source trees
 - Report: number of repos digested, total estimated tokens, and file paths
+- **Automate with `/schedule`**: Instead of remembering to run this skill weekly, the user can set up a recurring schedule with AG2's built-in `/schedule` command: `/schedule: Run /codebase-digest every Monday at 9am`. This ensures digests are always fresh without manual intervention.

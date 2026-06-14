@@ -143,6 +143,48 @@ This gives the model a clear scope, specific files, and a reference document —
 
 ---
 
+## AG2 Built-In Power Features
+
+AG2 has built-in slash commands that can dramatically reduce your manual overhead. Use them to complement your custom skills:
+
+### `/goal` — Autonomous Long-Running Tasks
+Instead of manually chaining skills (plan → implement → review → merge), tell AG2 to complete the entire goal autonomously:
+
+```
+/goal: Implement all 🟢 SIMPLE tasks in planning/tasks/bulk-export.md, run tests, and prepare for review
+```
+
+AG2 will work continuously until the goal is achieved, chaining skills as needed. **Best for:** batches of simple implementation tasks on Gemini. **Avoid for:** tasks requiring architectural decisions (those need Opus planning first).
+
+### `/teamwork-preview` — Multi-Agent Collaboration
+For large features spanning 3+ repos, `/teamwork-preview` spawns a coordinated team of agents. This is a more powerful version of `/delegate` — AG2 handles the orchestration automatically.
+
+```
+/teamwork-preview: Implement the bulk export feature from planning/tasks/bulk-export.md
+```
+
+**Best for:** Large, well-planned features with independent work streams. **Requires:** An existing task plan with clear, file-isolated tasks.
+
+### `/grill-me` — Interactive Design Interview
+Before spending Opus tokens on `/prd` or `/arch`, use `/grill-me` to resolve design ambiguities through a structured Q&A:
+
+```
+/grill-me: I want to add bulk CSV export to the reports system
+```
+
+AG2 will ask targeted questions to nail down scope, edge cases, and trade-offs — so your subsequent planning session is focused and efficient.
+
+### `/schedule` — Automated Maintenance
+Set up recurring maintenance tasks:
+
+```
+/schedule: Run /codebase-digest every Monday at 9am
+```
+
+This keeps your repo digests fresh automatically, so every session starts with current structural context.
+
+---
+
 ## Skills Quick Reference by Quota State
 
 Use this table to quickly determine what's available based on your current quota:

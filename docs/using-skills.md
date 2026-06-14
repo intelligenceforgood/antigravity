@@ -37,6 +37,16 @@ Some skills reference other skills internally (e.g., `wrapup-and-merge` chains `
 
 You do not need to manually chain skills. Just invoke the top-level one.
 
+### Autonomous Chaining with `/goal`
+
+For longer chains of work, AG2's built-in `/goal` command can execute multiple skills autonomously until the goal is fully achieved. Instead of manually invoking each skill in a chain, describe the end state:
+
+```text
+/goal: Implement all 🟢 tasks in planning/tasks/bulk-export.md, run tests, do a lean review, and merge
+```
+
+AG2 will chain `/work-on-task` → `/lean-review` → `/git-merge` automatically. Use this on **Gemini** for implementation-heavy work to maximize throughput without manual intervention.
+
 ## Skill Categories
 
 Skills are organized conceptually by lifecycle stage:
