@@ -110,6 +110,18 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Next** | `git-merge` if approved |
 | **Recommended Model** | Sonnet 4.6 |
 
+### lean-review
+
+| Field | Value |
+|---|---|
+| **Skill Path** | `.agents/skills/lean-review` |
+| **Shorthand** | "lean review" or "quick review" |
+| **When** | Sonnet quota is exhausted, or a quick automated pre-merge check is needed |
+| **Input** | Staged or uncommitted changes (auto-detected via `git diff`) |
+| **Output** | Pass/fail checklist: pre-commit, scope compliance, security scan, contract check |
+| **Next** | `git-merge` if all checks pass |
+| **Recommended Model** | Gemini 3.5 Flash |
+
 ### check-log
 
 | Field | Value |
@@ -212,6 +224,58 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 
 ---
 
+## 💰 Token Optimization Tier
+
+### prompt-preflight
+
+| Field | Value |
+|---|---|
+| **Skill Path** | `.agents/skills/prompt-preflight` |
+| **Shorthand** | "preflight", "estimate this", "how much will this cost" |
+| **When** | Before any large task, or when unsure which model to use |
+| **Input** | User prompt or task description |
+| **Output** | Brief advisory: complexity classification, model recommendation, decomposition suggestion |
+| **Next** | Proceed with recommended model/skill, or decompose further |
+| **Recommended Model** | Any (lightweight triage) |
+
+### cost-estimate
+
+| Field | Value |
+|---|---|
+| **Skill Path** | `.agents/skills/cost-estimate` |
+| **Shorthand** | "cost estimate", "how much quota", "estimate this plan" |
+| **When** | After `plan-work` produces a plan, before starting implementation |
+| **Input** | Task plan file from `planning/tasks/` |
+| **Output** | Per-phase cost breakdown, total turns by model, session split recommendation |
+| **Next** | Begin implementation per the session split |
+| **Recommended Model** | Any (read-only analysis) |
+
+### quota-mode
+
+| Field | Value |
+|---|---|
+| **Skill Path** | `.agents/skills/quota-mode` |
+| **Shorthand** | "quota mode", "conserve tokens", "I'm low on quota" |
+| **When** | Premium model quota is exhausted or running low |
+| **Input** | None |
+| **Output** | Conservation mode activated; list of available vs deferred skills |
+| **Next** | Continue with execution-tier skills only |
+| **Recommended Model** | Any (activates on any model) |
+
+### codebase-digest
+
+| Field | Value |
+|---|---|
+| **Skill Path** | `.agents/skills/codebase-digest` |
+| **Shorthand** | "digest", "update digests", "refresh digests" |
+| **When** | Weekly, after major changes, or when context maps are stale |
+| **Input** | Active project slice |
+| **Output** | Per-repo structural digests saved to `planning/digests/` |
+| **Next** | Use digests instead of raw file reads in future sessions |
+| **Recommended Model** | Gemini 3.5 Flash |
+
+---
+
 ## Skill Chains (Common Sequences)
 
 These are typical end-to-end skill chains for common development scenarios:
@@ -234,4 +298,9 @@ wrapup-and-merge (= sprint-wrapup + code-review + git-merge) → deploy-to-dev �
 ### Hardening
 ```
 hardening-sprint → work-on-task (×N) → sprint-wrapup → git-merge
+```
+
+### Quota-Optimized Feature (Limited Budget)
+```
+prompt-preflight → plan-work (Opus) → cost-estimate → session-bridge → work-on-task (×N, Gemini) → lean-review (Gemini) → git-merge
 ```

@@ -73,7 +73,7 @@ Skills are SKILL.md files inside `.agents/skills/` that Antigravity reads and tr
 
 ### User Rules (Global Behavior)
 
-See `docs/user-rules-template.md` for the recommended `user_rules` configuration that ensures consistent agent behavior across all team members and sessions.
+See `docs/user-rules-template.md` for the recommended `user_rules` configuration that ensures consistent agent behavior across all team members and sessions.The 
 
 ---
 

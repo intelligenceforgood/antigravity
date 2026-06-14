@@ -53,3 +53,25 @@ When delegating tasks via `invoke_subagent`:
 - Prefer `share` workspace mode to avoid branch/clone disk and time overhead.
 - Pass the narrowest possible brief. Only list the target files to modify and the specific standards relevant to the task.
 - Avoid passing general codebase summaries or redundant instructions.
+- **Context folding**: Instruct subagents to return structured completion summaries (max 10 lines: files modified, tests passed, issues). Never request raw code or full outputs from subagents.
+
+## Session Depth Awareness
+
+Maintain awareness of session depth throughout every conversation:
+
+1. **Track approximate turn count** mentally. At turn ~10, note internally that the session is accumulating significant context.
+2. **At turn ~15+**, proactively suggest `/session-bridge` if incomplete tasks remain. Deep sessions suffer from context pollution and attention degradation.
+3. **After turn ~20**, strongly recommend saving state and continuing in a fresh session. Do not continue executing complex tasks in degraded sessions.
+4. **Never re-read files** already read earlier in the session. Extract key facts into working notes on first read.
+
+## Expensive-Model Anti-Patterns
+
+When running on Opus or Sonnet (quota-limited models), avoid these specific token wastes:
+
+- ❌ Reading test files during planning — tests are for verification, not design
+- ❌ Reading configuration files (docker-compose, CI configs) that Gemini will handle during implementation
+- ❌ Generating code in chat output — use file-writing tools exclusively
+- ❌ Re-reading `antigravity/knowledge/architecture/architecture.md` if already loaded this session
+- ❌ Performing implementation work (writing code, running tests) on Opus — delegate to Gemini via `/delegate`
+- ❌ Running broad `find` or `grep` commands that return >30 results — narrow the query first
+- ❌ Reading full files when only function signatures are needed — use `grep` for signatures

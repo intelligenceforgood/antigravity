@@ -72,3 +72,61 @@ When executing implementation or diagnostic tasks, use this checklist to select 
 
 When using subagent delegation (`/delegate`), the orchestrator (**Opus 4.6**) automatically writes these model routing constraints into delegation briefs to ensure execution tasks run on the most cost-effective Gemini Flash variant.
 
+---
+
+## Quota-Optimized Workflow Playbook
+
+Use this decision tree to determine the optimal workflow for any task, accounting for your current quota state:
+
+```
+Start → What kind of task is this?
+│
+├─ Planning / Architecture / PRD
+│  └─ Is Opus available?
+│     ├─ YES → Use Opus → /plan-work or /arch → /session-bridge → switch to Gemini
+│     └─ NO  → DEFER. Do NOT plan on Gemini — it risks architectural drift.
+│              Use Gemini for implementation of EXISTING plans only.
+│
+├─ Implementation (from existing plan)
+│  └─ Check task annotation:
+│     ├─ 🟢 SIMPLE → Gemini Flash → /work-on-task
+│     ├─ 🟡 MODERATE → Gemini Pro → /work-on-task
+│     └─ 🔴 COMPLEX → Wait for Opus, or ask Opus to decompose further
+│
+├─ Bug Fix
+│  └─ Is it cross-repo?
+│     ├─ YES → Gemini Pro → /fix-bug
+│     └─ NO  → Gemini Flash → /fix-bug
+│
+├─ Code Review
+│  └─ Is Sonnet available?
+│     ├─ YES → Sonnet → /code-review
+│     └─ NO  → Gemini Flash → /lean-review (automated checks only)
+│
+└─ Diagnostics / Ops
+   └─ Always Gemini Flash (Low) → /check-log or /manual-verification
+```
+
+### Session Planning Checklist
+
+Before starting any work session:
+
+1. **Check quota**: Which model tiers are available?
+2. **Check task plan**: Do existing plans with 🟢/🟡 tasks exist?
+3. **Pick the right model**: Match your available quota to the task tier
+4. **Set a turn budget**: Aim for 10–15 turns maximum per session
+5. **Plan your exit**: Know when you'll run `/session-bridge`
+
+### Key Efficiency Skills
+
+| Skill | Purpose | When to Use |
+|:---|:---|:---|
+| `/prompt-preflight` | Estimate cost before starting | Before any large task |
+| `/quota-mode` | Activate conservation mode | When premium quota is low |
+| `/cost-estimate` | Cost breakdown for a plan | After `/plan-work`, before implementation |
+| `/codebase-digest` | Generate structural digests | Weekly, or after major changes |
+| `/lean-review` | Quick automated review | When Sonnet is unavailable |
+| `/session-bridge` | Save state for next session | At turn 15, or when switching models |
+
+See [Quota Playbook](quota-playbook.md) for detailed guidance on managing your weekly quota budget.
+

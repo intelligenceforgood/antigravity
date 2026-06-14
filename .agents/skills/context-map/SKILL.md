@@ -18,6 +18,8 @@ description: Generate a condensed architecture map of the active project slice f
 
 1. Identify which repos are in the active project slice (check the conversation's project context).
 2. Read `antigravity/knowledge/architecture/architecture.md` for the platform reference — do NOT re-extract what's already documented there.
+3. **Check for existing digests**: If `planning/digests/<repo>-digest.md` exists for repos in the slice and is <7 days old, incorporate digest data instead of re-scanning those repos. This avoids redundant extraction.
+4. **Delta mode**: If a previous context map exists for this slice (in `planning/context-maps/`), check `git status --porcelain` across all slice repos. Only re-scan repos with uncommitted changes. Reuse the previous map's data for unchanged repos.
 
 ## Steps
 
@@ -107,10 +109,11 @@ Generated: <ISO timestamp> | Repos: <list>
 <anything surprising or important for planning>
 ```
 
-**Target size: under 4,000 tokens.** If the output exceeds this, further collapse by:
+**Target size: under 3,000 tokens.** If the output exceeds this, further collapse by:
 - Removing obvious/boilerplate entries
 - Grouping similar endpoints (e.g., "CRUD on /cases" instead of listing all 5 endpoints)
 - Showing only public-facing models (skip internal DTOs)
+- Referencing digest files instead of duplicating their content: "See `planning/digests/core-digest.md` for full API surface"
 
 ## Execution Rules
 

@@ -64,6 +64,27 @@ Project slice: <active project>
 
 ## Context Map Reference
 - **Last generated**: planning/context-maps/<file>
+- **Repo digests available**: planning/digests/<list files>
+
+## Model Routing for Next Session
+| Next Action | Recommended Model | Rationale |
+|:---|:---|:---|
+| <e.g., "Continue implementation Phase 2"> | Gemini 3.5 Flash | Narrow-scope coding from existing plan |
+| <e.g., "Redesign pipeline architecture"> | Opus 4.6 | Cross-repo design decision |
+
+## Quota Status Snapshot
+- **Opus**: <available / exhausted / unknown>
+- **Sonnet**: <available / exhausted / unknown>
+- **Gemini**: Always available
+- **Recommendation**: <e.g., "Start next session on Gemini Flash for implementation. Save Opus for Phase 3 planning.">
+
+## Pre-Loaded Context (read these first in next session)
+1. This bridge document
+2. planning/tasks/<slug>.md (task plan)
+3. planning/digests/<relevant-repo>-digest.md
+4. <specific source file only if mid-edit>
+
+> **Do NOT re-read** antigravity/knowledge/architecture/architecture.md unless working on architecture. The digest files contain sufficient structural context.
 
 ## Key Decisions Made This Session
 1. <decision + rationale>

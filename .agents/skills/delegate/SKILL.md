@@ -38,12 +38,18 @@ Review the task plan and partition into delegation units. Each unit must satisfy
 - **Testability**: Each unit has at least one automated verification command
 - **Independence**: Units can execute in parallel without coordination
 
+**Classify each unit's complexity:**
+- 🟢 **SIMPLE**: Single repo, follows existing patterns, no API/schema changes → Gemini Flash
+- 🟡 **MODERATE**: 1–2 repos, multiple files, may touch API routes → Gemini Pro
+- 🔴 **COMPLEX**: Cross-repo contracts, schema changes, new patterns → Escalate to orchestrator (do NOT delegate)
+
 Present the partition as a table:
 
-| Unit | Repos | Files to Modify | Acceptance Test | Parallelizable? |
-|------|-------|----------------|-----------------|-----------------|
+| Unit | Repos | Files to Modify | Complexity | Recommended Model | Acceptance Test | Parallelizable? |
+|------|-------|----------------|:---:|:---:|-----------------|:---:|
 
 Flag any tasks that CANNOT be parallelized (shared file dependencies) and sequence them.
+🔴 COMPLEX units must NOT be delegated — they stay with the orchestrator (Opus).
 
 ### 2. BRIEF — Compose Handoff Prompts
 
@@ -54,10 +60,17 @@ For each delegation unit, compose a structured brief using this exact template:
 
 **Task**: <description from plan>
 **Project Slice**: <which i4g-* project this maps to>
+**Complexity**: 🟢 SIMPLE / 🟡 MODERATE
+**Recommended Model**: Gemini 3.5 Flash / Gemini 3.1 Pro
+
+### Token Budget
+- **Max context reads**: 5 files (read digest first if available in planning/digests/)
+- **Max output lines**: 200 lines of code changes
+- **Response format**: Use file-writing tools exclusively. Do NOT output code in chat.
 
 ### Context Files (read these first)
-- antigravity/knowledge/architecture/architecture.md
-- <relevant standards file>
+- planning/digests/<repo>-digest.md (if exists — use instead of raw source exploration)
+- <relevant standards file from antigravity/knowledge/standards/>
 - <task plan file, specific task numbers>
 
 ### Scope Boundary
@@ -79,6 +92,14 @@ For each delegation unit, compose a structured brief using this exact template:
 
 ### Model Routing
 Use **Gemini** for this implementation task. Opus is reserved for planning and architectural decisions only.
+
+### Completion Report Format
+When done, respond with ONLY this structured summary (max 10 lines):
+- Files modified: <list>
+- Tests run: <command> → <pass/fail>
+- Issues encountered: <none or description>
+- Scope violations: <none or description>
+Do NOT include code snippets, full file contents, or verbose explanations.
 ```
 
 ### 3. EXECUTE — Invoke Subagents
@@ -92,6 +113,8 @@ For **parallelizable units**: invoke all subagents simultaneously using `invoke_
 For **sequential units**: invoke one at a time, waiting for completion before the next.
 
 Monitor subagents via `send_message` only if they haven't reported back within a reasonable time.
+
+**Context folding**: When subagents report back, extract only the structured summary (files modified, test results, issues). Discard verbose explanations. This prevents orchestrator context bloat when managing multiple subagents.
 
 ### 4. VERIFY — Review Results
 

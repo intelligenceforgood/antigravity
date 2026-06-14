@@ -59,8 +59,16 @@ Create a markdown task list `- [ ]` for each step. Each task should be independe
 
 Every task MUST explicitly mention the exact files it will modify with full paths.
 
-- [ ] Step 1: ...
-- [ ] Step 2: ...
+**Gemini-safety annotations**: Tag each task with a complexity indicator so the user can instantly see which model is needed:
+- 🟢 **SIMPLE** — Safe for Gemini Flash. Single repo, follows existing patterns.
+- 🟡 **MODERATE** — Use Gemini Pro. Multiple files, may touch API routes.
+- 🔴 **COMPLEX** — Requires Opus. Cross-repo contracts, schema changes, new patterns.
+
+Example:
+- [ ] 🟢 Step 1: Add `export_format` field to Report model (`core/src/i4g/models/report.py`) — SIMPLE
+- [ ] 🟢 Step 2: Create export endpoint (`core/src/i4g/api/reports.py`) — follows existing CRUD pattern
+- [ ] 🟡 Step 3: Add SSI export adapter (`ssi/src/ssi/adapters/export.py`) — touches cross-repo types
+- [ ] 🔴 Step 4: Redesign report pipeline architecture — COMPLEX, requires Opus
 
 ## Execution Rules
 
@@ -69,3 +77,5 @@ Every task MUST explicitly mention the exact files it will modify with full path
 3. After saving, tell the user the next step and how to invoke `/work-on-task`.
 4. **Model Routing**: This is a planning-tier skill. Run this skill strictly on **Opus 4.6** to ensure complete file coverage mapping. Do not use Gemini Pro.
 5. **Cheaper Execution Gearing**: When breaking the task into steps, design them to be executed independently by low-cost models (Gemini 3.5 Flash / 3.1 Pro). Ensure each task defines a narrow, file-isolated boundary.
+6. **Gemini-safety annotations**: Every task MUST have a 🟢/🟡/🔴 annotation. This enables the user to plan model allocation before starting implementation.
+7. **Cost-aware ordering**: Order tasks so all 🟢 SIMPLE tasks can be batched into a single Gemini session, followed by 🟡 MODERATE tasks, with 🔴 COMPLEX tasks deferred to Opus sessions.
