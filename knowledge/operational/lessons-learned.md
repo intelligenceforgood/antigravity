@@ -30,3 +30,8 @@
 - **Test Fixture Constraints:** When mocking test models (e.g., SQLite NOT NULL constraints), ensure test fixtures populate required fields.
 - **Mocking Background Tasks in Integration Tests:** When testing API endpoints that trigger long-running background tasks, ensure the task handler itself is mocked or patched out to avoid tests silently taking several minutes.
 - **Next.js 15 Dynamic Routing:** Dynamic route `params` (and `searchParams`) are asynchronous in Next.js 15. They must be typed as `Promise<{ [key]: string }>` and awaited before use.
+
+## Workflow & Building
+
+- **Prefer Makefile Targets over Manual Command/Script Executions.** Always check the project `Makefile` first for relevant targets (e.g., `make build-dev` instead of executing raw docker build scripts or other local commands) to ensure consistent environment setups.
+
