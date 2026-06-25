@@ -1,5 +1,10 @@
 # Antigravity Skill Framework
 
+[![Platform: I4G](https://img.shields.io/badge/Platform-I4G-navy.svg)](https://github.com/intelligenceforgood)
+[![Framework: Antigravity](https://img.shields.io/badge/Framework-Antigravity-blueviolet.svg)](README.md)
+[![Standards: Active](https://img.shields.io/badge/Standards-Active-brightgreen.svg)](knowledge/)
+[![Type: SDLC Skills](https://img.shields.io/badge/Type-SDLC%20Skills-orange.svg)](docs/skill-catalog.md)
+
 The centralized knowledge base, architectural guidelines, and standardized skills for the I4G team's Antigravity AI coding assistant.
 
 By maintaining these centrally in a version-controlled repository, we ensure consistent AI-driven development across all I4G multi-root repositories (`core`, `ui`, `ssi`, `infra`, `ml`, `planning`, `docs`, `mobile`).
