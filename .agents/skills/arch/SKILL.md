@@ -1,7 +1,7 @@
 ---
 name: Architecture
 description: Draft a technical architecture proposal ensuring compliance with I4G standards
-model: Opus 4.6
+model: planning-tier
 ---
 
 # Architecture & Technical Design Proposal
@@ -18,7 +18,7 @@ model: Opus 4.6
 
 1. Read `antigravity/knowledge/architecture/architecture.md` to understand the existing platform.
 2. Read the relevant language standards from `antigravity/knowledge/standards/`.
-3. **If design decisions are unresolved**, recommend the user run AG2's `/grill-me` command first. It conducts a structured interactive interview to align on architectural trade-offs before committing Opus tokens to the full design.
+3. **If design decisions are unresolved**, recommend the user run AG2's `/grill-me` command first. It conducts a structured interactive interview to align on architectural trade-offs before committing Planning Tier tokens to the full design.
 
 ## Template
 
@@ -43,4 +43,4 @@ High-level explanation of how this feature integrates into the existing systems.
 1. **Save the architecture doc** using `write_to_file` to `planning/architecture/` (create the directory if needed).
 2. After generating, suggest the `/plan-work` skill as the next step.
 3. Do NOT output the full document in chat — just confirm it was saved and summarize.
-4. **Model Routing**: This is a planning-tier skill. Run this skill strictly on **Opus 4.6** to ensure architectural soundness. Do not use Gemini Pro due to trust/reasoning limits.
+4. **Model Routing**: This is a planning-tier skill. Run this skill strictly on the **Planning Tier** model to ensure architectural soundness. Do not use Execution Tier models due to trust/reasoning limits.

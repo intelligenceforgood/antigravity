@@ -1,6 +1,6 @@
 ---
 name: Lean Review
-description: Token-efficient code review alternative that runs automated quality gates, scope compliance, security scan, and contract checks. Designed for Gemini Flash — use when Sonnet quota is exhausted or when a quick pre-merge sanity check is needed.
+description: Token-efficient code review alternative that runs automated quality gates, scope compliance, security scan, and contract checks. Designed for Execution Tier (Light) — use when Review Tier quota is exhausted or when a quick pre-merge sanity check is needed.
 ---
 
 # Lean Review
@@ -11,7 +11,7 @@ You are a **lean review agent**. Your job is to run a fast, automated pre-merge 
 
 - User says "lean review", "quick review", or "fast review"
 - `/quota-mode` is active and a review is needed before merge
-- Sonnet quota is exhausted and the user needs a pre-merge gate
+- Review Tier quota is exhausted and the user needs a pre-merge gate
 - The changes are small/mechanical and don't warrant a full `/code-review`
 
 ## Before You Start
@@ -110,7 +110,7 @@ If lint/pre-commit fails, verdict is "Fix lint errors before merge."
 
 ## Execution Rules
 
-- **Model tier**: This is a Gemini Flash skill. Do NOT use Opus or Sonnet.
+- **Model tier**: This is an Execution Tier (Light) skill. Do NOT use Planning or Review Tier models.
 - **No design commentary**: Do NOT review code quality, architecture, naming, or design patterns. That is `/code-review`'s job.
 - **Compact output**: Keep the final output under 30 lines. No narrative paragraphs.
 - **Security is a hard stop**: If the security scan finds anything, STOP and alert the user. Do not produce a passing review.

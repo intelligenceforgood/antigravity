@@ -35,7 +35,7 @@ The `antigravity/knowledge/` directory contains architectural standards, coding 
 ```
 knowledge/
 ├── architecture/    # Platform architecture, routing, auth, database schema
-├── standards/       # Python, TypeScript, testing, security, CI/CD, Docker, etc.
+├── standards/       # Python, TypeScript, testing, security, CI/CD, Docker, model tiers
 └── operational/     # Lessons learned, merge discipline, skill execution rules
 ```
 
@@ -131,16 +131,17 @@ Antigravity is an **autonomous agent** — it reads files, writes code, and runs
 
 ## Step 7: Token Economy & Model Routing
 
-To maximize development efficiency and minimize token costs (especially on restricted developer subscription tiers like AI Pro), Antigravity standardizes on a **dual-model routing strategy**:
+To maximize development efficiency and minimize token costs (especially on restricted developer subscription tiers like AI Pro), Antigravity standardizes on a **tiered model routing strategy**. See `knowledge/standards/model-tiers.md` for the full tier definitions and current model mappings.
 
-- **Planning & Architecture (Opus 4.6 / Sonnet 4.6)**: Reserve the highest reasoning model, **Opus 4.6**, for structural planning skills (`/prd`, `/arch`, `/plan-work`). Use **Sonnet 4.6** for high-value `/code-review` tasks. We do not use Gemini Pro for architecture or planning due to reasoning limitations.
-- **Execution & Implementation (Gemini 3.5 Flash / Gemini 3.1 Pro)**: Switch your active model to fast, low-cost, high-context Gemini models for `/work-on-task`, `/fix-bug`, `/tdd`, and operational commands.
-  - Use **Gemini 3.5 Flash (H/M/L)** for standard coding, unit testing, and utility execution.
-  - Use **Gemini 3.1 Pro (H/L)** when resolving complex multi-file bugs or troubleshooting detailed logs.
+- **Planning Tier**: Reserve the highest reasoning model for structural planning skills (`/prd`, `/arch`, `/plan-work`). Do not use Execution Tier models for architecture or planning due to reasoning limitations.
+- **Review Tier**: Use for high-value `/code-review` tasks, security audits, and sprint wrapups.
+- **Execution Tier**: Switch your active model to fast, low-cost, high-context models for `/work-on-task`, `/fix-bug`, `/tdd`, and operational commands.
+  - Use **Execution Tier (Light)** for standard coding, unit testing, and utility execution.
+  - Use **Execution Tier (Heavy)** when resolving complex multi-file bugs or troubleshooting detailed logs.
+- **Utility Tier**: Model-agnostic skills like `/session-bridge`, `/record-lesson`, and `/context-map` run equally well on any model.
 
-By executing execution-tier tasks on cheaper models, you conserve premium model quotas for critical structural design decisions.
+By executing Execution Tier tasks on cheaper models, you conserve premium model quotas for critical structural design decisions.
 
 ---
 
 Ready to dive deeper? Check the [Cookbook](cookbook.md) for real-world skill recipes.
-

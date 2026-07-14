@@ -50,13 +50,13 @@ Only allow skills that are execution-focused or lightweight:
 - `/prompt-preflight` — Triage before execution
 
 **❌ Deferred — Expensive skills:**
-- `/arch` — Architecture design (requires Opus-level reasoning)
-- `/plan-work` — Full task planning (requires Opus-level reasoning)
-- `/prd` — Product requirements (requires Opus-level reasoning)
-- `/code-review` — Full code review (requires Sonnet-level analysis)
+- `/arch` — Architecture design (requires Planning Tier reasoning)
+- `/plan-work` — Full task planning (requires Planning Tier reasoning)
+- `/prd` — Product requirements (requires Planning Tier reasoning)
+- `/code-review` — Full code review (requires Review Tier analysis)
 
 If the user requests a deferred skill, respond with:
-> ⚡ **Quota Mode**: `/[skill-name]` is deferred to conserve quota. This skill works best with [Opus/Sonnet] and should wait for quota reset. Would you like me to create a deferred task entry instead?
+> ⚡ **Quota Mode**: `/[skill-name]` is deferred to conserve quota. This skill works best with [Planning/Review Tier] and should wait for quota reset. Would you like me to create a deferred task entry instead?
 
 ### 3. Enforce Context Budgets
 
@@ -83,7 +83,7 @@ When the user requests a code review (or a review phase comes up in a plan):
 ```markdown
 # Deferred Review: [PR/Branch Name]
 Generated: [timestamp]
-Status: PENDING — waiting for Sonnet quota
+Status: PENDING — waiting for Review Tier quota
 
 ## Files to Review
 - [ ] path/to/file1.py — [brief description of changes]
@@ -101,7 +101,7 @@ Status: PENDING — waiting for Sonnet quota
 ```
 
 3. Save the file to `planning/deferred-reviews/review-[branch-name]-[date].md`
-4. Tell the user: "Review deferred. Run `/code-review` on this file when Sonnet quota resets."
+4. Tell the user: "Review deferred. Run `/code-review` on this file when Review Tier quota resets."
 
 ### 5. Work From Existing Plans Only
 
@@ -109,7 +109,7 @@ While in quota mode:
 
 - **If a task plan exists** in `planning/tasks/`: Execute from it using `/work-on-task`
 - **If no plan exists**: Do NOT attempt to create one. Tell the user:
-  > ⚡ **Quota Mode**: No existing plan found for this work. Planning requires Opus-level reasoning and is deferred. Please wait for quota reset, or provide a manual task breakdown.
+  > ⚡ **Quota Mode**: No existing plan found for this work. Planning requires Planning Tier reasoning and is deferred. Please wait for quota reset, or provide a manual task breakdown.
 - **If the user provides a manual breakdown**: Accept it and execute — the constraint is on agent-generated planning, not user-provided plans
 
 ### 6. Handle Deactivation

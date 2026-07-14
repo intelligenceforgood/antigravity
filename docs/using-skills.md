@@ -64,23 +64,20 @@ See the [Skill Catalog](skill-catalog.md) for the complete list of available ski
 
 To optimize token utilization and API cost (especially for subscription tiers like AI Pro), follow this model-routing mapping in Antigravity 2.0:
 
-| Tier | Recommended Model | Skills Covered | Focus & Rationale |
+| Tier | Recommended Tier | Skills Covered | Focus & Rationale |
 |---|---|---|---|
-| **Planning & Design** | **Opus 4.6** | `/prd`, `/arch`, `/plan-work` | Architectural design, feature decomposition, and file mapping. Requires the absolute highest logical capacity. We do not use Gemini Pro for architecture. |
-| **Code Review & Audits** | **Sonnet 4.6** | `/code-review`, `/sprint-wrapup` | High-value standards checking, security audits, and diff logic. |
-| **Execution & Coding** | **Gemini 3.5 Flash (H/M)** | `/work-on-task`, `/fix-bug`, `/tdd` | Writing code, running local tests, and making targeted edits. Gemini 3.5 Flash is highly fast and context-efficient. |
-| **Complex Troubleshooting** | **Gemini 3.1 Pro (H/L)** | `/fix-bug` (complex), `/sprint-wrapup` | Resolving multi-repo bugs, tracing detailed log stack traces, and checking complex integrations. |
-| **Diagnostics & Ops** | **Gemini 3.5 Flash (Low)** | `/check-log`, `/manual-verification` | Processing raw log streams, running verification lists, and status checks. |
+| **Planning & Design** | **Planning Tier** | `/prd`, `/arch`, `/plan-work` | Architectural design, feature decomposition, and file mapping. Requires the absolute highest logical capacity. We do not use Execution Tier models for architecture. |
+| **Code Review & Audits** | **Review Tier** | `/code-review`, `/sprint-wrapup` | High-value standards checking, security audits, and diff logic. |
+| **Execution & Coding** | **Execution Tier (Light)** | `/work-on-task`, `/fix-bug`, `/tdd` | Writing code, running local tests, and making targeted edits. Highly fast and context-efficient. |
+| **Complex Troubleshooting** | **Execution Tier (Heavy)** | `/fix-bug` (complex), `/sprint-wrapup` | Resolving multi-repo bugs, tracing detailed log stack traces, and checking complex integrations. |
+| **Diagnostics & Ops** | **Execution Tier (Light)** | `/check-log`, `/manual-verification` | Processing raw log streams, running verification lists, and status checks. |
 
-### Selecting the Right Gemini Model
-When executing implementation or diagnostic tasks, use this checklist to select the best Gemini variant:
-* **Gemini 3.5 Flash (Low)**: Minor script changes, log dumping, running tests, or single-line fixes. Minimizes token cost.
-* **Gemini 3.5 Flash (Medium)**: Normal component editing, standard function writes, and standard unit tests.
-* **Gemini 3.5 Flash (High)**: Creating large files/components, heavy refactoring of single-repo structures, and massive unit test files.
-* **Gemini 3.1 Pro (Low)**: Minor API contract alignment, type definitions, and complex `/tdd` iterations.
-* **Gemini 3.1 Pro (High)**: Multi-repo dependency resolution, trace log analysis, and deep cross-repo bug fixes.
+### Selecting the Right Execution Tier Weight
+When executing implementation or diagnostic tasks, select the best tier weight:
+* **Execution Tier (Light)**: Minor script changes, log dumping, running tests, standard coding, and standard unit tests. Minimizes token cost.
+* **Execution Tier (Heavy)**: Multi-repo dependency resolution, trace log analysis, deep cross-repo bug fixes, and heavy refactoring.
 
-When using subagent delegation (`/delegate`), the orchestrator (**Opus 4.6**) automatically writes these model routing constraints into delegation briefs to ensure execution tasks run on the most cost-effective Gemini Flash variant.
+When using subagent delegation (`/delegate`), the orchestrator automatically writes these model routing constraints into delegation briefs to ensure execution tasks run on the most cost-effective Execution Tier weight. See `knowledge/standards/model-tiers.md` for current model mappings.
 
 ---
 
@@ -92,29 +89,29 @@ Use this decision tree to determine the optimal workflow for any task, accountin
 Start → What kind of task is this?
 │
 ├─ Planning / Architecture / PRD
-│  └─ Is Opus available?
-│     ├─ YES → Use Opus → /plan-work or /arch → /session-bridge → switch to Gemini
-│     └─ NO  → DEFER. Do NOT plan on Gemini — it risks architectural drift.
-│              Use Gemini for implementation of EXISTING plans only.
+│  └─ Is Planning Tier available?
+│     ├─ YES → Use Planning Tier → /plan-work or /arch → /session-bridge → switch to Execution Tier
+│     └─ NO  → DEFER. Do NOT plan on Execution Tier — it risks architectural drift.
+│              Use Execution Tier for implementation of EXISTING plans only.
 │
 ├─ Implementation (from existing plan)
 │  └─ Check task annotation:
-│     ├─ 🟢 SIMPLE → Gemini Flash → /work-on-task
-│     ├─ 🟡 MODERATE → Gemini Pro → /work-on-task
-│     └─ 🔴 COMPLEX → Wait for Opus, or ask Opus to decompose further
+│     ├─ 🟢 SIMPLE → Execution Tier (Light) → /work-on-task
+│     ├─ 🟡 MODERATE → Execution Tier (Heavy) → /work-on-task
+│     └─ 🔴 COMPLEX → Wait for Planning Tier, or ask Planning Tier to decompose further
 │
 ├─ Bug Fix
 │  └─ Is it cross-repo?
-│     ├─ YES → Gemini Pro → /fix-bug
-│     └─ NO  → Gemini Flash → /fix-bug
+│     ├─ YES → Execution Tier (Heavy) → /fix-bug
+│     └─ NO  → Execution Tier (Light) → /fix-bug
 │
 ├─ Code Review
-│  └─ Is Sonnet available?
-│     ├─ YES → Sonnet → /code-review
-│     └─ NO  → Gemini Flash → /lean-review (automated checks only)
+│  └─ Is Review Tier available?
+│     ├─ YES → Review Tier → /code-review
+│     └─ NO  → Execution Tier (Light) → /lean-review (automated checks only)
 │
 └─ Diagnostics / Ops
-   └─ Always Gemini Flash (Low) → /check-log or /manual-verification
+   └─ Always Execution Tier (Light) → /check-log or /manual-verification
 ```
 
 ### Session Planning Checklist

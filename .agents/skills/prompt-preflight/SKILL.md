@@ -40,9 +40,9 @@ Quickly scan the prompt for scope signals:
 
 Based on the intent + scope, assign a complexity tier:
 
-- 🟢 **SIMPLE** → **Gemini 3.5 Flash** — Single-repo, <5 files, well-defined task, no architectural decisions
-- 🟡 **MODERATE** → **Gemini 3.1 Pro** — Single-repo but 5-15 files, or requires reading complex existing code, or involves refactoring
-- 🔴 **COMPLEX** → **Opus 4.6** — Multi-repo, architectural decisions, >15 files, new system design, or planning tasks
+- 🟢 **SIMPLE** → **Execution Tier (Light)** — Single-repo, <5 files, well-defined task, no architectural decisions
+- 🟡 **MODERATE** → **Execution Tier (Heavy)** — Single-repo but 5-15 files, or requires reading complex existing code, or involves refactoring
+- 🔴 **COMPLEX** → **Planning Tier** — Multi-repo, architectural decisions, >15 files, new system design, or planning tasks
 
 ### 4. Suggest Decomposition (if needed)
 
@@ -50,10 +50,10 @@ If the task is 🟡 MODERATE or 🔴 COMPLEX, break it into numbered sub-tasks:
 
 ```
 Sub-tasks:
-  1. [Gemini Flash] Read and summarize existing auth module (2 turns)
-  2. [Opus] Design new token refresh flow (3 turns)
-  3. [Gemini Pro] Implement token refresh in core/auth/ (4 turns)
-  4. [Sonnet] Review implementation against design (2 turns)
+  1. [Execution Tier (Light)] Read and summarize existing auth module (2 turns)
+  2. [Planning Tier] Design new token refresh flow (3 turns)
+  3. [Execution Tier (Heavy)] Implement token refresh in core/auth/ (4 turns)
+  4. [Review Tier] Review implementation against design (2 turns)
 ```
 
 Include estimated turns per sub-task using the heuristic: ~1 turn per 2 simple tasks, ~1 turn per moderate task, ~2 turns per complex task.
@@ -62,7 +62,7 @@ Include estimated turns per sub-task using the heuristic: ~1 turn per 2 simple t
 
 If the user has multiple small tasks queued (or the prompt contains several unrelated requests):
 
-- Group related small tasks that can share a single Gemini session
+- Group related small tasks that can share a single Execution Tier session
 - Flag tasks that should NOT be batched (e.g., tasks in different repos, tasks with conflicting file changes)
 
 ### 6. Output the Advisory

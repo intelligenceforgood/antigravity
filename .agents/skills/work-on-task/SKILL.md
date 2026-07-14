@@ -1,7 +1,7 @@
 ---
 name: Work on Task
 description: Implement a task from a plan with testing, documentation, and validation
-model: Gemini 3.5 Flash (H/M) / Gemini 3.1 Pro (Low/High)
+model: execution-tier
 ---
 
 # Work on Task
@@ -53,7 +53,7 @@ model: Gemini 3.5 Flash (H/M) / Gemini 3.1 Pro (Low/High)
 7. **Session depth check.** If this task was preceded by 10+ turns in the current session, proactively suggest: "Consider running `/session-bridge` before continuing with the next task."
 
 8. **Model Routing & Token Economy**:
-   - Run this execution-tier skill on **Gemini 3.5 Flash (H/M)** (standard coding tasks) or **Gemini 3.1 Pro (H/L)** (complex multi-file adjustments). Do not run execution on Opus to conserve quota.
+   - Run this execution-tier skill on **Execution Tier (Light)** (standard coding tasks) or **Execution Tier (Heavy)** (complex multi-file adjustments). Do not run execution on Planning Tier models to conserve quota.
    - Strictly practice targeted editing: use `replace_file_content` / `multi_replace_file_content` with anchor context lines to edit target segments. Avoid full file replacements.
 
 ## When Things Go Wrong

@@ -11,7 +11,7 @@ description: Decompose a task plan into scoped subagent delegations with structu
 
 - A task plan exists with multiple independent work units across different repos
 - The user says "delegate", "fan out", "parallelize", "hand off to subagents"
-- You're in a planning session (Opus) and need implementation work done by execution agents
+- You're in a planning session (Planning Tier) and need implementation work done by execution agents
 - A task has clear, testable acceptance criteria and bounded file scope
 
 ## Before You Start
@@ -39,8 +39,8 @@ Review the task plan and partition into delegation units. Each unit must satisfy
 - **Independence**: Units can execute in parallel without coordination
 
 **Classify each unit's complexity:**
-- 🟢 **SIMPLE**: Single repo, follows existing patterns, no API/schema changes → Gemini Flash
-- 🟡 **MODERATE**: 1–2 repos, multiple files, may touch API routes → Gemini Pro
+- 🟢 **SIMPLE**: Single repo, follows existing patterns, no API/schema changes → Execution Tier (Light)
+- 🟡 **MODERATE**: 1–2 repos, multiple files, may touch API routes → Execution Tier (Heavy)
 - 🔴 **COMPLEX**: Cross-repo contracts, schema changes, new patterns → Escalate to orchestrator (do NOT delegate)
 
 Present the partition as a table:
@@ -49,7 +49,7 @@ Present the partition as a table:
 |------|-------|----------------|:---:|:---:|-----------------|:---:|
 
 Flag any tasks that CANNOT be parallelized (shared file dependencies) and sequence them.
-🔴 COMPLEX units must NOT be delegated — they stay with the orchestrator (Opus).
+🔴 COMPLEX units must NOT be delegated — they stay with the orchestrator (Planning Tier).
 
 ### 2. BRIEF — Compose Handoff Prompts
 
@@ -61,7 +61,7 @@ For each delegation unit, compose a structured brief using this exact template:
 **Task**: <description from plan>
 **Project Slice**: <which i4g-* project this maps to>
 **Complexity**: 🟢 SIMPLE / 🟡 MODERATE
-**Recommended Model**: Gemini 3.5 Flash / Gemini 3.1 Pro
+**Recommended Model**: Execution Tier (Light) / Execution Tier (Heavy)
 
 ### Token Budget
 - **Max context reads**: 5 files (read digest first if available in planning/digests/)
@@ -91,7 +91,7 @@ For each delegation unit, compose a structured brief using this exact template:
 5. No hardcoded secrets or local paths
 
 ### Model Routing
-Use **Gemini** for this implementation task. Opus is reserved for planning and architectural decisions only.
+Use **Execution Tier** for this implementation task. Planning Tier is reserved for planning and architectural decisions only.
 
 ### Completion Report Format
 When done, respond with ONLY this structured summary (max 10 lines):
@@ -175,5 +175,5 @@ Once all delegation units are verified:
 1. **Never delegate without a task plan.** The plan is the contract. If no plan exists, invoke `/plan-work` first.
 2. **Never delegate architecture or planning work.** Subagents implement; they don't design. Keep all design decisions in the planning session.
 3. **Scope boundaries are hard limits.** If a subagent needs to modify a file outside its scope, it must report back — the orchestrator decides whether to expand scope or create a new delegation unit.
-4. **Model routing**: Implementation subagents use Gemini. Planning and architecture stay on Opus. This preserves Opus quota for high-value decisions.
+4. **Model routing**: Implementation subagents use Execution Tier. Planning and architecture stay on Planning Tier. This preserves Planning Tier quota for high-value decisions.
 5. **Maximum fan-out**: No more than 4 concurrent subagents to avoid overwhelming verification.

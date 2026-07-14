@@ -43,7 +43,7 @@ When the active project is a focused slice (e.g., `i4g-frontend`, `i4g-backend`)
 
 ## Model-Specific Context Budgets
 
-When running on fast/cheaper models (like Gemini 3.5 Flash (H/M/L) or Gemini 3.1 Pro (H/L)):
+When running on Execution Tier models (see `knowledge/standards/model-tiers.md` for current mappings):
 - Break edits into smaller, contiguous chunks and verify each chunk sequentially rather than doing massive multi-file updates.
 - Keep output responses extremely brief. Rely on updated files on disk rather than long explanations.
 
@@ -66,12 +66,12 @@ Maintain awareness of session depth throughout every conversation:
 
 ## Expensive-Model Anti-Patterns
 
-When running on Opus or Sonnet (quota-limited models), avoid these specific token wastes:
+When running on Premium Tier models (Planning and Review Tiers — quota-limited), avoid these specific token wastes:
 
 - ❌ Reading test files during planning — tests are for verification, not design
-- ❌ Reading configuration files (docker-compose, CI configs) that Gemini will handle during implementation
+- ❌ Reading configuration files (docker-compose, CI configs) that Execution Tier will handle during implementation
 - ❌ Generating code in chat output — use file-writing tools exclusively
 - ❌ Re-reading `antigravity/knowledge/architecture/architecture.md` if already loaded this session
-- ❌ Performing implementation work (writing code, running tests) on Opus — delegate to Gemini via `/delegate`
+- ❌ Performing implementation work (writing code, running tests) on Planning Tier — delegate to Execution Tier via `/delegate`
 - ❌ Running broad `find` or `grep` commands that return >30 results — narrow the query first
 - ❌ Reading full files when only function signatures are needed — use `grep` for signatures

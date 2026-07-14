@@ -39,7 +39,7 @@ For each phase in the plan, determine:
 
 | Factor | Assessment |
 |--------|-----------|
-| **Model tier** | Opus (planning/arch), Sonnet (review), Gemini Pro (complex impl), Gemini Flash (simple impl) |
+| **Model tier** | Planning Tier, Review Tier, Execution Tier (Heavy), Execution Tier (Light) |
 | **Task count** | Number of discrete tasks in the phase |
 | **Complexity** | Simple (boilerplate, config), Moderate (new logic, refactoring), Complex (architecture, multi-repo) |
 | **Files to read** | Estimated count of files the agent needs to read for context |
@@ -73,9 +73,9 @@ Aggregate the per-phase breakdown into a total:
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 TOTALS
-  Opus turns:    [N]  (planning, architecture)
-  Sonnet turns:  [N]  (review, quality checks)
-  Gemini turns:  [N]  (implementation, diagnostics)
+  Planning Tier turns:    [N]  (planning, architecture)
+  Review Tier turns:  [N]  (review, quality checks)
+  Execution Tier turns:  [N]  (implementation, diagnostics)
   ────────────────────
   Total turns:   [N]
   Repos touched: [list]
@@ -90,29 +90,29 @@ Always recommend how to distribute work across separate sessions, even for small
 📅 RECOMMENDED SESSION SPLIT
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Session 1 (Opus, ~[N] turns):
+Session 1 (Planning Tier, ~[N] turns):
   → Phases: [list]
   → Goal: [what this session accomplishes]
   → End with: /session-bridge
 
-Session 2 (Gemini, ~[N] turns):
+Session 2 (Execution Tier, ~[N] turns):
   → Phases: [list]
   → Goal: [what this session accomplishes]
   → End with: /session-bridge
 
-Session 3 (Sonnet, ~[N] turns):
+Session 3 (Review Tier, ~[N] turns):
   → Phases: [list]
   → Goal: [what this session accomplishes]
   → End with: merge + deploy
 ```
 
 Guidelines for session boundaries:
-- **Planning + Architecture** → always Opus, always first session
-- **Implementation** → Gemini (Flash for simple, Pro for moderate/complex)
-- **Review + Merge** → Sonnet, always last session
+- **Planning + Architecture** → always Planning Tier, always first session
+- **Implementation** → Execution Tier (Light for simple, Heavy for moderate/complex)
+- **Review + Merge** → Review Tier, always last session
 - **Session bridge** between every session to preserve context
 - **Max ~15 turns per session** to avoid context degradation
-- Split large implementation phases across multiple Gemini sessions if >10 turns
+- Split large implementation phases across multiple Execution Tier sessions if >10 turns
 
 ### 6. Quota Impact Assessment
 
@@ -122,9 +122,9 @@ Provide a plain-language assessment of quota impact:
 💰 QUOTA IMPACT
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 This plan will consume approximately:
-  • [N] Opus turns    — [low/moderate/heavy] usage
-  • [N] Sonnet turns  — [low/moderate/heavy] usage
-  • [N] Gemini turns  — [low/moderate/heavy] usage
+  • [N] Planning Tier turns    — [low/moderate/heavy] usage
+  • [N] Review Tier turns  — [low/moderate/heavy] usage
+  • [N] Execution Tier turns  — [low/moderate/heavy] usage
 
 [If heavy]: ⚠️  Consider activating /quota-mode for non-critical phases
 [If moderate]: 💡 Manageable within a typical daily budget
@@ -132,9 +132,9 @@ This plan will consume approximately:
 ```
 
 Use these thresholds:
-- **Light**: <5 Opus turns, <5 Sonnet turns
-- **Moderate**: 5-15 Opus turns, 5-10 Sonnet turns
-- **Heavy**: >15 Opus turns, >10 Sonnet turns
+- **Light**: <5 Planning Tier turns, <5 Review Tier turns
+- **Moderate**: 5-15 Planning Tier turns, 5-10 Review Tier turns
+- **Heavy**: >15 Planning Tier turns, >10 Review Tier turns
 
 ## Execution Rules
 

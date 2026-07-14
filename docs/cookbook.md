@@ -12,7 +12,7 @@ This cookbook provides practical, copy-pasteable examples of how to use the Anti
 
 **Steps:**
 
-1. **Ideation** — Generate a PRD `[Model: Opus 4.6]`:
+1. **Ideation** — Generate a PRD `[Model: Planning Tier]`:
    ```
    /prd We need a new endpoint
    /api/v1/health/detailed that returns database connection status,
@@ -20,14 +20,14 @@ This cookbook provides practical, copy-pasteable examples of how to use the Anti
    ```
    The agent saves the PRD to `planning/prds/`.
 
-2. **Architecture** — Design the technical approach `[Model: Opus 4.6]`:
+2. **Architecture** — Design the technical approach `[Model: Planning Tier]`:
    ```
    /arch Based on the PRD at
    planning/prds/detailed_health.md, propose the architecture.
    ```
    The agent reads the architecture knowledge, designs the solution, and saves it.
 
-3. **Planning** — Break into implementable steps `[Model: Opus 4.6]`:
+3. **Planning** — Break into implementable steps `[Model: Planning Tier]`:
    ```
    /plan-work Create a step-by-step
    implementation plan for the detailed health feature based on the PRD
@@ -35,21 +35,21 @@ This cookbook provides practical, copy-pasteable examples of how to use the Anti
    ```
    The agent creates a task checklist in `planning/tasks/`.
 
-4. **Execution** — Implement step by step `[Model: Gemini 3.5 Flash (H/M)]`:
+4. **Execution** — Implement step by step `[Model: Execution Tier]`:
    ```
    /work-on-task Execute Step 1 from
    planning/tasks/detailed-health.md
    ```
    The agent reads the code, implements, writes tests, runs them, and checks off the step. Repeat for each step.
 
-5. **Review** — Pre-merge code review `[Model: Sonnet 4.6]`:
+5. **Review** — Pre-merge code review `[Model: Review Tier]`:
    ```
    /code-review Review the staged changes
    for the detailed health feature.
    ```
    The agent runs `git diff`, checks against standards, runs quality gates.
 
-6. **Merge** — Commit and push `[Model: Gemini 3.5 Flash (Low)]`:
+6. **Merge** — Commit and push `[Model: Execution Tier (Light)]`:
    ```
    /git-merge Merge the changes.
    ```
@@ -102,14 +102,14 @@ This cookbook provides practical, copy-pasteable examples of how to use the Anti
 
 2. **Commit and push** your work-in-progress branch.
 
-3. **Tomorrow (or your colleague)** — Start a new session `[Model: Opus 4.6 (for planning) OR Gemini 3.5 Flash (if resuming coding directly)]`:
+3. **Tomorrow (or your colleague)** — Start a new session `[Model: Planning Tier (for planning) OR Execution Tier (if resuming coding directly)]`:
    ```
    Read the remaining steps in planning/tasks/auth-refactor.md and
    summarize what needs to be done next.
    ```
    Antigravity retrieves context from the plan file. No "rehydration" prompt needed.
 
-4. **Continue execution** `[Model: Gemini 3.5 Flash (H/M)]`:
+4. **Continue execution** `[Model: Execution Tier]`:
    ```
    /work-on-task Work on the next
    unchecked step from planning/tasks/auth-refactor.md

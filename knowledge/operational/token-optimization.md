@@ -15,29 +15,33 @@
 
 ## Model-Specific Token Efficiency
 
-### Opus (Tier 1 — Planning)
-- **Highest intelligence, 5× cost of Sonnet.** Every token counts.
+### Planning Tier (Tier 1)
+- **Highest intelligence, most resource-intensive.** Every token counts.
+- **Current Model Mapping**: Opus (see `knowledge/standards/model-tiers.md` for updates).
 - **Use for:** Architecture design, cross-repo planning, complex system design, sprint planning, feature decomposition.
 - **Never use for:** Implementation, testing, diagnostics, log analysis, simple code changes.
-- **Discipline:** Arrive with a clear question. Provide pre-loaded context (digests, context maps). Extract the plan, then switch to a cheaper model to execute.
+- **Discipline:** Arrive with a clear question. Provide pre-loaded context (digests, context maps). Extract the plan, then switch to a cheaper tier to execute.
 
-### Sonnet (Tier 2 — Review)
-- **Strong reasoning at moderate cost.**
+### Review Tier (Tier 2)
+- **Strong reasoning at moderate resource cost.**
+- **Current Model Mapping**: Sonnet (see `knowledge/standards/model-tiers.md` for updates).
 - **Use for:** Code review, sprint wrapups, security audits, standards enforcement, complex debugging analysis.
-- **Save tokens by:** Using `/lean-review` on Gemini Flash for simple reviews (formatting, linting, obvious bugs). Reserve Sonnet for reviews requiring architectural judgment.
-- **Discipline:** Scope reviews to specific files/PRs. Don't ask Sonnet to "review the whole codebase."
+- **Save tokens by:** Using `/lean-review` on the Execution Tier (Light) for simple reviews (formatting, linting, obvious bugs). Reserve Review Tier for reviews requiring architectural judgment.
+- **Discipline:** Scope reviews to specific files/PRs. Don't ask Review Tier models to "review the whole codebase."
 
-### Gemini Flash (Tier 3 — Execution)
-- **Fast and cheap. The workhorse.**
+### Execution Tier (Light) (Tier 3)
+- **Fast and unlimited. The workhorse.**
+- **Current Model Mapping**: Gemini Flash (see `knowledge/standards/model-tiers.md` for updates).
 - **Use for:** Implementation, bug fixes, TDD, log analysis, file generation, deployment checklists.
 - **Trade-off:** Needs more explicit instructions. Keep tasks narrow and file-isolated. Provide exact file paths, function names, and expected behavior.
 - **Discipline:** One task per prompt. Include the file path and relevant context inline. Don't assume it remembers prior turns deeply.
 
-### Gemini Pro (Tier 3.5 — Complex Execution)
-- **Balanced intelligence and cost.**
+### Execution Tier (Heavy) (Tier 3.5)
+- **Balanced intelligence and unlimited usage.**
+- **Current Model Mapping**: Gemini Pro (see `knowledge/standards/model-tiers.md` for updates).
 - **Use for:** Complex multi-file implementations, cross-repo bug traces, refactors touching shared types.
-- **More expensive than Flash** but handles multi-step reasoning and cross-file dependencies better.
-- **Discipline:** Use when Flash fails or when the task inherently spans multiple files/repos. Don't default to Pro — start with Flash and escalate.
+- **More resource-intensive than Light** but handles multi-step reasoning and cross-file dependencies better.
+- **Discipline:** Use when Execution Tier (Light) fails or when the task inherently spans multiple files/repos. Don't default to Heavy — start with Light and escalate.
 
 ## Prompt Engineering for Token Efficiency
 
@@ -59,17 +63,17 @@
 | Asking for code in chat output | 2K–10K per block | Use `write_to_file` / `replace_file_content` tools |
 | Broad `find` or `grep` without path/type constraints | 5K–50K | Add `--include`, path filters, `MaxDepth` |
 | Re-reading architecture docs loaded earlier in session | 3K–8K per read | Extract key facts to working notes on first read |
-| Using Opus for implementation tasks | 5× cost multiplier | Use Gemini Flash/Pro for implementation |
-| Starting planning work when Opus quota is exhausted | Wasted session | Check quota before starting; defer to next Opus window |
+| Using Planning Tier for implementation tasks | 5× cost multiplier | Use Execution Tier (Light/Heavy) for implementation |
+| Starting planning work when Planning Tier quota is exhausted | Wasted session | Check quota before starting; defer to next Planning Tier window |
 | Asking "what changed?" without specifying a commit range | 10K–50K | Use `git diff <range>` or `git log -n 5 --oneline` |
 | Iterating on a fix without reading the error message first | 5K–20K per attempt | Always read the full error, then fix once |
 
 ## Session Management
 
 - **Plan sessions around model tiers:**
-  1. **Opus session** → Planning, architecture, task decomposition
-  2. **Gemini session** → Implementation, testing, file generation
-  3. **Sonnet session** → Review, security audit, standards check
+  1. **Planning Tier session** → Planning, architecture, task decomposition
+  2. **Execution Tier session** → Implementation, testing, file generation
+  3. **Review Tier session**    → Review, security audit, standards check
 - **Use `/session-bridge`** to transfer state between sessions. This avoids re-reading files and re-establishing context.
 - **Aim for 10–15 turns per session maximum.** Beyond this, context windows fill up and responses degrade.
 - **Deep sessions (20+ turns) suffer from context pollution.** The model starts confusing earlier context with current state. Split proactively after completing a logical phase.
@@ -79,20 +83,20 @@
 
 | Task Type | Model | Rationale |
 |:---|:---|:---|
-| New feature architecture | Opus | Cross-repo coherence needed |
-| Implementation planning | Opus | File mapping accuracy critical |
-| Single-repo code changes | Gemini Flash | Fast, cheap, sufficient for isolated work |
-| Multi-repo code changes | Gemini Pro | Handles cross-file complexity |
-| Bug fix (isolated) | Gemini Flash | Narrow scope, quick turnaround |
-| Bug fix (cross-repo) | Gemini Pro | Needs broader context awareness |
-| Code review | Sonnet | Standards + security depth |
-| Quick review (no Sonnet available) | Gemini Flash via `/lean-review` | Automated checks only |
-| Log analysis | Gemini Flash | Pattern matching, no deep reasoning needed |
-| Deployment | Gemini Flash | Checklist execution |
-| Security audit | Sonnet | Requires careful reasoning about attack vectors |
-| Database migration | Gemini Pro | Schema changes need cross-model awareness |
-| Documentation | Gemini Flash | Straightforward generation |
-| Sprint planning | Opus | Cross-repo task decomposition |
+| New feature architecture | Planning Tier | Cross-repo coherence needed |
+| Implementation planning | Planning Tier | File mapping accuracy critical |
+| Single-repo code changes | Execution Tier (Light) | Fast, cheap, sufficient for isolated work |
+| Multi-repo code changes | Execution Tier (Heavy) | Handles cross-file complexity |
+| Bug fix (isolated) | Execution Tier (Light) | Narrow scope, quick turnaround |
+| Bug fix (cross-repo) | Execution Tier (Heavy) | Needs broader context awareness |
+| Code review | Review Tier | Standards + security depth |
+| Quick review (no Review Tier available) | Execution Tier (Light) via `/lean-review` | Automated checks only |
+| Log analysis | Execution Tier (Light) | Pattern matching, no deep reasoning needed |
+| Deployment | Execution Tier (Light) | Checklist execution |
+| Security audit | Review Tier | Requires careful reasoning about attack vectors |
+| Database migration | Execution Tier (Heavy) | Schema changes need cross-model awareness |
+| Documentation | Execution Tier (Light) | Straightforward generation |
+| Sprint planning | Planning Tier | Cross-repo task decomposition |
 
 ---
 

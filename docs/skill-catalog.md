@@ -16,7 +16,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | Task description, PRD, user story, or feature request |
 | **Output** | Implementation plan saved to `planning/tasks/` |
 | **Next** | `work-on-task` for each step |
-| **Recommended Model** | Opus 4.6 |
+| **Recommended Tier** | Planning Tier |
 
 ### prd
 
@@ -28,7 +28,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | Feature description, user feedback, or business requirement |
 | **Output** | PRD saved to `planning/prds/` |
 | **Next** | `arch` for technical design |
-| **Recommended Model** | Opus 4.6 |
+| **Recommended Tier** | Planning Tier |
 
 ### arch
 
@@ -40,7 +40,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | PRD or feature description |
 | **Output** | Architecture document saved to `planning/architecture/` |
 | **Next** | `plan-work` for implementation planning |
-| **Recommended Model** | Opus 4.6 |
+| **Recommended Tier** | Planning Tier |
 
 ---
 
@@ -56,7 +56,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | Reference to a plan file and the specific step(s) to execute |
 | **Output** | Code changes, tests, docs updates, plan checkboxes updated |
 | **Next** | Next step, or `code-review` when done |
-| **Recommended Model** | Gemini 3.5 Flash (H/M) |
+| **Recommended Tier** | Execution Tier (Light) |
 
 ### tdd
 
@@ -68,7 +68,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | Feature description or spec |
 | **Output** | Tests written first, then implementation, then refactored |
 | **Next** | `code-review` |
-| **Recommended Model** | Gemini 3.5 Flash (H/M) / Gemini 3.1 Pro (Low) |
+| **Recommended Tier** | Execution Tier (Light / Heavy) |
 
 ### fix-bug
 
@@ -80,7 +80,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | Stack trace, error description, reproduction steps |
 | **Output** | Bug fix committed, regression test added |
 | **Next** | `code-review` or `git-merge` |
-| **Recommended Model** | Gemini 3.5 Flash (H/M) / Gemini 3.1 Pro (High) |
+| **Recommended Tier** | Execution Tier (Light / Heavy) |
 
 ### clarify
 
@@ -92,7 +92,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | Context from the current work session |
 | **Output** | Structured clarification request; work paused |
 | **Next** | User answers, then resume `work-on-task` |
-| **Recommended Model** | Gemini 3.5 Flash / 3.1 Pro |
+| **Recommended Tier** | Execution Tier |
 
 ---
 
@@ -108,7 +108,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | Staged or uncommitted changes (auto-detected via `git diff`) |
 | **Output** | List of issues, improvements, or "Looks good to merge" |
 | **Next** | `git-merge` if approved |
-| **Recommended Model** | Sonnet 4.6 |
+| **Recommended Tier** | Review Tier |
 
 ### lean-review
 
@@ -120,7 +120,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | Staged or uncommitted changes (auto-detected via `git diff`) |
 | **Output** | Pass/fail checklist: pre-commit, scope compliance, security scan, contract check |
 | **Next** | `git-merge` if all checks pass |
-| **Recommended Model** | Gemini 3.5 Flash |
+| **Recommended Tier** | Execution Tier (Light) |
 
 ### check-log
 
@@ -132,7 +132,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | GCP logging filter query |
 | **Output** | Root cause analysis and proposed fix |
 | **Next** | `fix-bug` if a code fix is needed |
-| **Recommended Model** | Gemini 3.5 Flash (Low) / Gemini 3.1 Pro (High) |
+| **Recommended Tier** | Execution Tier (Light / Heavy) |
 
 ### manual-verification
 
@@ -144,7 +144,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | Environment to verify (dev or prod) |
 | **Output** | Pass/fail for each verification check |
 | **Next** | Fix issues or sign off |
-| **Recommended Model** | Gemini 3.5 Flash (Low) |
+| **Recommended Tier** | Execution Tier (Light) |
 
 ---
 
@@ -160,7 +160,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | Current workspace state (auto-detected) |
 | **Output** | Updated task plan, change log entry, risk assessment, lessons recorded |
 | **Next** | `git-merge` |
-| **Recommended Model** | Opus 4.6 / Gemini 3.1 Pro (High) |
+| **Recommended Tier** | Planning Tier / Execution Tier (Heavy) |
 
 ### git-merge
 
@@ -172,7 +172,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | Changed repos (auto-detected via `git status`) |
 | **Output** | Code reviewed, committed, and pushed to `main` |
 | **Next** | `deploy-to-dev` if deploying |
-| **Recommended Model** | Gemini 3.5 Flash (Low) |
+| **Recommended Tier** | Execution Tier (Light) |
 
 ### wrapup-and-merge
 
@@ -184,7 +184,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | Current workspace state |
 | **Output** | Sprint wrapped up + code reviewed + committed + pushed |
 | **Next** | `deploy-to-dev` |
-| **Recommended Model** | Opus 4.6 |
+| **Recommended Tier** | Planning Tier |
 
 ### deploy-to-dev
 
@@ -196,7 +196,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | Recently merged changes |
 | **Output** | Pre-flight checks, Docker images built, deployment initiated |
 | **Next** | `manual-verification` |
-| **Recommended Model** | Gemini 3.5 Flash (Low) |
+| **Recommended Tier** | Execution Tier (Light) |
 
 ### record-lesson
 
@@ -208,7 +208,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | The lesson (from conversation or user description) |
 | **Output** | Entry added to `knowledge/operational/lessons-learned.md` |
 | **Next** | Continue work |
-| **Recommended Model** | Gemini 3.5 Flash (Low) |
+| **Recommended Tier** | Execution Tier (Light) |
 
 ### hardening-sprint
 
@@ -220,7 +220,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | Hardening plan in `planning/tasks/` |
 | **Output** | Next task identified, executed, and checked off |
 | **Next** | Repeat or `sprint-wrapup` |
-| **Recommended Model** | Opus 4.6 |
+| **Recommended Tier** | Planning Tier |
 
 ---
 
@@ -235,8 +235,8 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **When** | Before any large task, or when unsure which model to use |
 | **Input** | User prompt or task description |
 | **Output** | Brief advisory: complexity classification, model recommendation, decomposition suggestion |
-| **Next** | Proceed with recommended model/skill, or decompose further |
-| **Recommended Model** | Any (lightweight triage) |
+| **Next** | Proceed with recommended tier/skill, or decompose further |
+| **Recommended Tier** | Utility Tier (Lightweight Triage) |
 
 ### cost-estimate
 
@@ -248,7 +248,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | Task plan file from `planning/tasks/` |
 | **Output** | Per-phase cost breakdown, total turns by model, session split recommendation |
 | **Next** | Begin implementation per the session split |
-| **Recommended Model** | Any (read-only analysis) |
+| **Recommended Tier** | Utility Tier (Read-Only Analysis) |
 
 ### quota-mode
 
@@ -260,7 +260,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | None |
 | **Output** | Conservation mode activated; list of available vs deferred skills |
 | **Next** | Continue with execution-tier skills only |
-| **Recommended Model** | Any (activates on any model) |
+| **Recommended Tier** | Utility Tier |
 
 ### codebase-digest
 
@@ -272,7 +272,7 @@ Complete reference for every Antigravity skill available to the I4G team. Each e
 | **Input** | Active project slice |
 | **Output** | Per-repo structural digests saved to `planning/digests/` |
 | **Next** | Use digests instead of raw file reads in future sessions |
-| **Recommended Model** | Gemini 3.5 Flash |
+| **Recommended Tier** | Execution Tier (Light) |
 
 ---
 

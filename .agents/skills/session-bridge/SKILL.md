@@ -12,7 +12,7 @@ description: Capture current session state as a structured handoff document for 
 - The session is approaching context window limits (agent mentions "long conversation" or performance degrades)
 - The user says "save state", "bridge", "handoff", "prepare for next session", "wrap up for now"
 - Before ending a long planning session with incomplete tasks
-- When switching from Opus to Gemini for implementation work
+- When switching from Planning Tier to Execution Tier for implementation work
 
 ## Steps
 
@@ -69,14 +69,14 @@ Project slice: <active project>
 ## Model Routing for Next Session
 | Next Action | Recommended Model | Rationale |
 |:---|:---|:---|
-| <e.g., "Continue implementation Phase 2"> | Gemini 3.5 Flash | Narrow-scope coding from existing plan |
-| <e.g., "Redesign pipeline architecture"> | Opus 4.6 | Cross-repo design decision |
+| <e.g., "Continue implementation Phase 2"> | Execution Tier (Light) | Narrow-scope coding from existing plan |
+| <e.g., "Redesign pipeline architecture"> | Planning Tier | Cross-repo design decision |
 
 ## Quota Status Snapshot
-- **Opus**: <available / exhausted / unknown>
-- **Sonnet**: <available / exhausted / unknown>
-- **Gemini**: Always available
-- **Recommendation**: <e.g., "Start next session on Gemini Flash for implementation. Save Opus for Phase 3 planning.">
+- **Planning Tier**: <available / exhausted / unknown>
+- **Review Tier**: <available / exhausted / unknown>
+- **Execution Tier**: Always available
+- **Recommendation**: <e.g., "Start next session on Execution Tier (Light) for implementation. Save Planning Tier for Phase 3 planning.">
 
 ## Pre-Loaded Context (read these first in next session)
 1. This bridge document

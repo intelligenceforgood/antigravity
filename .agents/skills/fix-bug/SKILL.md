@@ -1,7 +1,7 @@
 ---
 name: Fix Bug
 description: Diagnose and fix a reported bug autonomously
-model: Gemini 3.5 Flash (H/M) / Gemini 3.1 Pro (High)
+model: execution-tier
 ---
 
 # Fix Bug
@@ -40,7 +40,7 @@ model: Gemini 3.5 Flash (H/M) / Gemini 3.1 Pro (High)
    - Do NOT output modified code in chat — just list the modified files.
    - Provide a run command to test the fix if applicable.
    - **Model Routing & Token Economy**:
-     - Run standard bugs on **Gemini 3.5 Flash (H/M)**. For complex multi-file bugs or stack trace log analysis, use **Gemini 3.1 Pro (High)**.
+     - Run standard bugs on **Execution Tier (Light)**. For complex multi-file bugs or stack trace log analysis, use **Execution Tier (Heavy)**.
      - Strictly practice targeted editing: use `replace_file_content` / `multi_replace_file_content` with anchor context lines to edit target segments. Avoid full file replacements.
 
 ## When Things Go Wrong
