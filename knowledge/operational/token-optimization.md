@@ -17,14 +17,14 @@
 
 ### Planning Tier (Tier 1)
 - **Highest intelligence, most resource-intensive.** Every token counts.
-- **Current Model Mapping**: Opus (see `knowledge/standards/model-tiers.md` for updates).
+- **Current Model Mapping**: Gemini 3.1 Pro (High) / Opus (see `knowledge/standards/model-tiers.md` for updates).
 - **Use for:** Architecture design, cross-repo planning, complex system design, sprint planning, feature decomposition.
 - **Never use for:** Implementation, testing, diagnostics, log analysis, simple code changes.
 - **Discipline:** Arrive with a clear question. Provide pre-loaded context (digests, context maps). Extract the plan, then switch to a cheaper tier to execute.
 
 ### Review Tier (Tier 2)
 - **Strong reasoning at moderate resource cost.**
-- **Current Model Mapping**: Sonnet (see `knowledge/standards/model-tiers.md` for updates).
+- **Current Model Mapping**: Gemini 3.1 Pro (High) / Sonnet (see `knowledge/standards/model-tiers.md` for updates).
 - **Use for:** Code review, sprint wrapups, security audits, standards enforcement, complex debugging analysis.
 - **Save tokens by:** Using `/lean-review` on the Execution Tier (Light) for simple reviews (formatting, linting, obvious bugs). Reserve Review Tier for reviews requiring architectural judgment.
 - **Discipline:** Scope reviews to specific files/PRs. Don't ask Review Tier models to "review the whole codebase."
@@ -38,7 +38,7 @@
 
 ### Execution Tier (Heavy) (Tier 3.5)
 - **Balanced intelligence and unlimited usage.**
-- **Current Model Mapping**: Gemini Pro (see `knowledge/standards/model-tiers.md` for updates).
+- **Current Model Mapping**: Gemini 3.1 Pro (Low/Medium) (see `knowledge/standards/model-tiers.md` for updates).
 - **Use for:** Complex multi-file implementations, cross-repo bug traces, refactors touching shared types.
 - **More resource-intensive than Light** but handles multi-step reasoning and cross-file dependencies better.
 - **Discipline:** Use when Execution Tier (Light) fails or when the task inherently spans multiple files/repos. Don't default to Heavy — start with Light and escalate.

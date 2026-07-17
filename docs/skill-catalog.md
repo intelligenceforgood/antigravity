@@ -302,10 +302,10 @@ hardening-sprint → work-on-task (×N) → sprint-wrapup → git-merge
 
 ### Quota-Optimized Feature (Limited Budget)
 ```
-prompt-preflight → plan-work (Opus) → cost-estimate → session-bridge → work-on-task (×N, Gemini) → lean-review (Gemini) → git-merge
+prompt-preflight → plan-work (Pro High) → cost-estimate → session-bridge → work-on-task (×N, Flash) → lean-review (Flash) → git-merge
 ```
 
 ### Multi-Agent Feature (Large Scope)
 ```
-/grill-me → prd → arch (Opus) → plan-work (Opus) → session-bridge → /teamwork-preview (Gemini, autonomous) → code-review (Sonnet) → git-merge
+/grill-me → prd → arch (Pro High) → plan-work (Pro High) → session-bridge → /teamwork-preview (Flash, autonomous) → code-review (Pro High) → git-merge
 ```

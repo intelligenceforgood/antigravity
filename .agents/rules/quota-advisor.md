@@ -26,6 +26,17 @@ Before executing any planning, architecture, or multi-repo skill, classify the t
 
 > 💡 **Quota Advisory:** This task is classified as **SIMPLE**. You can save Planning Tier quota by switching to an Execution Tier model for this work.
 
+## 1.5. Skill vs. Model Mismatch Advisory
+
+Before executing any skill, check if the skill's recommended tier (defined in `docs/skill-catalog.md`) matches the current active model tier.
+
+**When to fire:** If a Planning Tier skill (`/prd`, `/arch`, `/plan-work`, `/hardening-sprint`) or Review Tier skill (`/code-review`) is invoked while running on an Execution Tier model:
+
+> [!WARNING]
+> **Model Mismatch:** You are invoking a **Planning/Review Tier** skill (`{skill name}`) on an **Execution Tier** model (**{Active Model}**).
+> Running planning or review tasks on execution models can lead to suboptimal plans, missing edge cases, or architectural drift.
+> **Action:** Consider switching your model selection to a Planning/Review Tier model (e.g., **Gemini 3.1 Pro (High)**) before executing this skill.
+
 ## 2. Prompt Decomposition Advisor
 
 When a user prompt contains multiple distinct work items (identifiable by: multiple verbs, "and also", "then", enumerated lists of unrelated changes, or requests spanning 3+ repos), emit:
