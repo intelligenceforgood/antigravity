@@ -26,7 +26,7 @@
 |:---|:---|:---|:---|
 | **Planning Tier** | Gemini 3.1 Pro (High) / Opus 4.6 | Unlimited (Pro) / Limited (Opus) | High-reasoning Deep Think. Use Pro High as default. |
 | **Review Tier** | Gemini 3.1 Pro (High) / Sonnet 4.6 | Unlimited (Pro) / Limited (Sonnet) | High-reasoning Deep Think for code quality and security reviews. |
-| **Execution Tier (Light)** | Gemini 3.5 Flash (H/M/L) | Unlimited | Fast, cheap workhorse. One task per prompt. |
+| **Execution Tier (Light)** | Gemini 3.6 Flash (H/M/L) | Unlimited | Fast, cheap workhorse. One task per prompt. |
 | **Execution Tier (Heavy)** | Gemini 3.1 Pro (Low/Medium) | Unlimited | Better multi-step reasoning than Flash, optimized for speed. |
 | **Utility Tier** | Any | N/A | These skills run equally well on any model. |
 
@@ -68,3 +68,4 @@ Use `/session-bridge` between sessions to preserve context.
 | Date | Change |
 |:---|:---|
 | 2026-07-14 | Initial creation. Mapping reflects Opus 4.6 / Sonnet 4.6 / Gemini 3.5 Flash / Gemini 3.1 Pro. |
+| 2026-07-22 | Upgraded Execution Tier (Light) mapping from Gemini 3.5 Flash to Gemini 3.6 Flash. |
