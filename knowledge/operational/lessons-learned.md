@@ -34,4 +34,6 @@
 ## Workflow & Building
 
 - **Prefer Makefile Targets over Manual Command/Script Executions.** Always check the project `Makefile` first for relevant targets (e.g., `make build-dev` instead of executing raw docker build scripts or other local commands) to ensure consistent environment setups.
+- **FastAPI Settings Isolation in Auth Tests:** When testing authentication fallbacks (Priority 2.5 DB-backed keys vs Priority 1 local bypass), always mock `settings.identity.disable_auth = False` and `settings.partner_feed.enabled = True` in test fixtures to prevent tests from defaulting to the local-dev mock admin identity.
+
 
