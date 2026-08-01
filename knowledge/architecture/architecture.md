@@ -114,6 +114,49 @@ The eCX proxy routes forward **directly to ssi-svc** (not through core). They us
 
 **Never assume auth is the cause of errors in local dev.** If a request returns 404 or 500 locally, the issue is routing, missing data, or code bugs — not authentication.
 
+### Auth Source Tracking (`auth_source`)
+
+Every context object returned by `require_token()` includes an `auth_source` key identifying the authentication mechanism:
+
+| `auth_source` | Description / Authentication Path |
+| --- | --- |
+| `local` | Local development override (`disable_auth=True` or `I4G_ENV=local`). |
+| `static_key` | Validated against environment-level static key (`I4G_API_KEY`). |
+| `db_api_key` | Validated against database-backed API key in `api_keys` table. |
+| `iap` | Validated via `X-Goog-IAP-JWT-Assertion` header. |
+| `bearer` | Validated via `Authorization: Bearer <JWT>` header. |
+
+### Scope Enforcement Patterns
+
+1. **`require_internal_session()`** (`i4g.api.scopes`)
+   - FastAPI dependency used at router or endpoint level to restrict administrative and internal endpoints.
+   - Blocks DB-backed API keys (`auth_source == "db_api_key"`) unless they explicitly possess the `admin:internal` scope (returns `403 Forbidden`).
+   - Interactive sessions (`iap`, `bearer`), local dev (`local`), and static keys (`static_key`) pass through automatically.
+   - Applied to internal routers: `/accounts`, `/admin/api-keys`, `/tasks`.
+
+2. **`require_scope(required_scope: str)`** (`i4g.api.auth`)
+   - Function-level dependency for granular permission checks within endpoints (e.g. checking for `partner:write`).
+
+| Scenario | Recommended Guard |
+| --- | --- |
+| Restricting an entire internal UI router from partner API keys | `dependencies=[Depends(require_internal_session)]` |
+| Checking fine-grained permission on a specific operation | `Depends(require_scope("scope:name"))` |
+
+### Tag Classification & OpenAPI Schema Filtering
+
+Endpoints are tagged to distinguish partner-accessible fraud APIs from internal management endpoints:
+
+- **`PARTNER_ALLOWED_TAGS`**: `{"partner-feeds", "cases", "evidence", "reviews", "analytics", "discovery", "intelligence", "investigations", "ssi", "exports", "taxonomy"}`
+- **`INTERNAL_ONLY_TAGS`**: `{"accounts", "api-keys", "tasks", "dashboard", "engagements", "campaigns", "impact", "feedback", "intakes", "playbooks", "actors", "discoveries", "ssi-events", "wallets", "reports", "health"}`
+
+**OpenAPI Filtering Strategy:**
+- **Public Schema (`/openapi.json` / `/docs`)**: `create_app()` dynamically overrides `app.openapi()` to omit any endpoint whose tags fall under `INTERNAL_ONLY_TAGS`, cleaning up unused tag metadata and schemas.
+- **Internal Schema (`/openapi-internal.json` / `/docs/internal`)**: Serves the complete, unfiltered OpenAPI specification. Protected by `require_internal_session()`.
+
+### Legacy `partner_mode` Removal
+
+The legacy `partner_mode` boolean setting and conditional router filtering in `app.py` have been **completely removed**. Endpoint access and documentation visibility are now governed dynamically by `require_internal_session()` and tag-based OpenAPI filtering.
+
 ---
 
 ## 3. Storage & Evidence
