@@ -7,8 +7,8 @@ description: Full test matrix execution — unit tests, build verification, infr
 // turbo
 
 2. **Run Python test suites.** For each changed Python repo that has tests, execute the appropriate test command using the correct conda environment:
-   - `core` → `conda run -n i4g pytest tests/unit -x --tb=short`
-   - `ssi` → `conda run -n i4g-ssi pytest tests/unit -x --tb=short`
+   - `core` → `conda run -n core pytest tests/unit -x --tb=short`
+   - `ssi` → `conda run -n ssi pytest tests/unit -x --tb=short`
    - `ml` → `conda run -n ml pytest tests/unit -x --tb=short`
    Capture exit codes, test counts (passed/failed/skipped), and any failure output for each repo. Skip repos that have no changes or no test suite.
 

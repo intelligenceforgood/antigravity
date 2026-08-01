@@ -23,7 +23,7 @@ description: Pre-flight checklist: smoke test, build, deploy to i4g-dev
 
 2. **Local smoke test.** Verify the code works locally:
    ```bash
-   conda run -n i4g I4G_PROJECT_ROOT=$PWD I4G_ENV=dev I4G_LLM__PROVIDER=mock i4g jobs ingest --help
+   conda run -n core I4G_PROJECT_ROOT=$PWD I4G_ENV=dev I4G_LLM__PROVIDER=mock i4g jobs ingest --help
    ```
 
 3. **Identify images to build.** Based on changed files, determine which Docker images need rebuilding:

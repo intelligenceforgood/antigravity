@@ -16,8 +16,8 @@ Focused on the target repo, with standards loaded from:
 Environment routing:
 | Repo | Test Command |
 |------|-------------|
-| `core` | `conda run -n i4g pytest tests/unit -x --tb=short` |
-| `ssi` | `conda run -n i4g-ssi pytest tests/unit -x --tb=short` |
+| `core` | `conda run -n core pytest tests/unit -x --tb=short` |
+| `ssi` | `conda run -n ssi pytest tests/unit -x --tb=short` |
 | `ml` | `conda run -n ml pytest tests/unit -x --tb=short` |
 | `ui` | `cd ui && pnpm test` |
 | `mobile` | `cd mobile && pnpm test` |

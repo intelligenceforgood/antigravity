@@ -35,7 +35,7 @@ model: execution-tier
    - Ensure the fix addresses the root cause, not just the symptom.
 
 4. **Verify**:
-   - Run relevant tests to verify the fix: `conda run -n i4g pytest tests/unit -x`
+   - Run relevant tests to verify the fix: `conda run -n core pytest tests/unit -x`
    - Provide a concise explanation of what was changed and why.
    - Do NOT output modified code in chat — just list the modified files.
    - Provide a run command to test the fix if applicable.

@@ -20,8 +20,8 @@ You are a **lean review agent**. Your job is to run a fast, automated pre-merge 
 2. Determine the correct environment for each repo with changes:
    | Repo | Conda Env | Lint Command |
    |:-----|:----------|:-------------|
-   | `core` | `i4g` | `conda run -n i4g pre-commit run --files <files>` |
-   | `ssi` | `i4g-ssi` | `conda run -n i4g-ssi pre-commit run --files <files>` |
+   | `core` | `core` | `conda run -n core pre-commit run --files <files>` |
+   | `ssi` | `ssi` | `conda run -n ssi pre-commit run --files <files>` |
    | `ml` | `ml` | `conda run -n ml pre-commit run --files <files>` |
    | `ui` | N/A | `cd ui/ && pnpm format && pnpm lint && pnpm build` |
    | `infra` | N/A | `terraform fmt -check -recursive` |

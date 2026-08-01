@@ -12,8 +12,8 @@ All 9 I4G repos are scanned:
 
 | Repo | Path | Env | Quality Gate |
 |------|------|-----|-------------|
-| `core` | `/Users/jerry/Work/project/i4g/core/` | `conda run -n i4g` | pre-commit + pytest |
-| `ssi` | `/Users/jerry/Work/project/i4g/ssi/` | `conda run -n i4g-ssi` | pre-commit + pytest |
+| `core` | `/Users/jerry/Work/project/i4g/core/` | `conda run -n core` | pre-commit + pytest |
+| `ssi` | `/Users/jerry/Work/project/i4g/ssi/` | `conda run -n ssi` | pre-commit + pytest |
 | `ml` | `/Users/jerry/Work/project/i4g/ml/` | `conda run -n ml` | pre-commit + pytest |
 | `ui` | `/Users/jerry/Work/project/i4g/ui/` | `pnpm` | format + lint + build |
 | `infra` | `/Users/jerry/Work/project/i4g/infra/` | `terraform` | fmt -check + validate |

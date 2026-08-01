@@ -31,7 +31,7 @@ Scan all repos to determine what needs deploying:
 3. **Run local smoke test.** Verify the code works locally before deploying:
    ```bash
    cd /Users/jerry/Work/project/i4g/core
-   conda run -n i4g I4G_PROJECT_ROOT=$PWD I4G_ENV=dev I4G_LLM__PROVIDER=mock i4g jobs ingest --help
+   conda run -n core I4G_PROJECT_ROOT=$PWD I4G_ENV=dev I4G_LLM__PROVIDER=mock i4g jobs ingest --help
    ```
    If UI changed, verify build: `cd /Users/jerry/Work/project/i4g/ui && pnpm build`
 // turbo
@@ -62,7 +62,7 @@ Scan all repos to determine what needs deploying:
 7. **Run database migrations.** If Alembic migrations were identified in Step 2:
    ```bash
    cd /Users/jerry/Work/project/i4g/core
-   conda run -n i4g i4g db migrate dev
+   conda run -n core i4g db migrate dev
    ```
    ⚠️ If migration fails, STOP immediately. Do NOT proceed with deployment. Report the error and suggest diagnosis steps.
 // turbo

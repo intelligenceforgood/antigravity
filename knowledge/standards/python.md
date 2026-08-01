@@ -22,7 +22,7 @@ tokens: 800
 
 ## Dependency and Environment Management
 
-- **Environment:** Use **Conda** for virtual environments. The standard workspace environment is named `i4g` (e.g., `conda run -n i4g <command>`).
+- **Environment:** Use **Conda** for virtual environments. Each repo has its own conda environment named after the repo (e.g., `core` for `core/`, `ssi` for `ssi/`; use `conda run -n core <command>`).
 - **Dependencies:** Core metadata and optional dependencies (e.g., `test`) are defined in `pyproject.toml` using `hatchling`.
 - **Locking:** Strict dependency pinning is maintained in `requirements.txt` for deterministic builds. When adding a dependency, update `pyproject.toml` first, then recompile `requirements.txt`.
 

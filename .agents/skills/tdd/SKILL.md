@@ -22,7 +22,7 @@ description: Implement via Test-Driven Development (Red → Green → Refactor)
 
 1. **Red Phase (Write Test):**
    - Write a failing test based on the requirements, ensuring it complies with testing standards.
-   - Run the test to confirm it fails: `conda run -n i4g pytest <test_file> -x`
+   - Run the test to confirm it fails: `conda run -n core pytest <test_file> -x`
 
 2. **Green Phase (Make it Pass):**
    - Write the minimal code required to pass the test.

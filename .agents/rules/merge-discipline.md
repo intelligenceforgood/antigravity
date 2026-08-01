@@ -28,7 +28,7 @@ Any edit to `tsconfig.json`, `package.json`, build config, or settings files mus
 cd ui/ && pnpm build
 
 # Python
-cd core/ && conda run -n i4g pre-commit run --all-files
+cd core/ && conda run -n core pre-commit run --all-files
 ```
 
 ## 3. Post-Push Cleanliness Sweep

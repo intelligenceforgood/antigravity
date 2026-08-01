@@ -23,8 +23,8 @@ Each repo has its own Conda environment. Use the correct prefix:
 
 | Repo | Conda Env | Command Prefix |
 |------|-----------|----------------|
-| `core` | `i4g` | `conda run -n i4g` |
-| `ssi` | `i4g-ssi` | `conda run -n i4g-ssi` |
+| `core` | `core` | `conda run -n core` |
+| `ssi` | `ssi` | `conda run -n ssi` |
 | `ml` | `ml` | `conda run -n ml` |
 | `ui` | N/A | `pnpm` (run from `ui/` directory) |
 | `infra` | N/A | `terraform` (with `gcloud` auth) |

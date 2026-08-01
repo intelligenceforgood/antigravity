@@ -37,13 +37,13 @@ description: Pre-merge review: cross-repo consistency, architecture, quality gat
 
 - Check for deviations from standards (type hints, naming conventions, docstrings).
 - **Repo-Specific Gates:** Run quality gates:
-  - Python: `conda run -n i4g pre-commit run --all-files`
+  - Python: `conda run -n core pre-commit run --all-files`
   - UI: `cd ui/ && pnpm format && pnpm lint && pnpm build`
 
 ## 5. Test Coverage
 
 - Is the changed code adequately covered by tests?
-- Run tests to verify: `conda run -n i4g pytest tests/unit -x`
+- Run tests to verify: `conda run -n core pytest tests/unit -x`
 
 ## 6. Action Items
 

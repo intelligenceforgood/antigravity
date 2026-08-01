@@ -30,7 +30,7 @@ description: Bootstrap a hardening session — load review plan, identify next t
 
 Ask: "Approve this work plan to begin implementation?"
 
-6. Execute the implementation following the `/work-on-task` pattern. Implement the changes described in the approved work plan: modify source files, add or update tests, update docstrings and inline documentation. Use the correct conda environment for the target repo (core→`conda run -n i4g`, ssi→`conda run -n i4g-ssi`, ml→`conda run -n ml`, ui→`pnpm`, infra→`terraform`). Run tests after implementation to verify correctness.
+6. Execute the implementation following the `/work-on-task` pattern. Implement the changes described in the approved work plan: modify source files, add or update tests, update docstrings and inline documentation. Use the correct conda environment for the target repo (core→`conda run -n core`, ssi→`conda run -n ssi`, ml→`conda run -n ml`, ui→`pnpm`, infra→`terraform`). Run tests after implementation to verify correctness.
 
 // turbo
 

@@ -33,7 +33,7 @@ model: execution-tier
 
 3. **Test.** Write or update tests for the changed logic:
    - Unit tests under `tests/unit/`
-   - Run tests: `conda run -n i4g pytest tests/unit -x` (stop on first failure)
+   - Run tests: `conda run -n core pytest tests/unit -x` (stop on first failure)
    - If adding env vars, add coverage under `tests/unit/settings/`
    - Run any relevant verification commands to ensure the change works
 
@@ -45,7 +45,7 @@ model: execution-tier
 
 5. **Validate locally.** Run pre-commit hooks:
    ```bash
-   conda run -n i4g pre-commit run --files <changed-files>
+   conda run -n core pre-commit run --files <changed-files>
    ```
 
 6. **Summarize.** Report what was done, tests that pass, and any follow-up items. Do NOT output modified code in chat — just list the modified files.
